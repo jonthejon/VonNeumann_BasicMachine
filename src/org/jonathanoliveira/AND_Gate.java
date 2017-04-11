@@ -9,7 +9,7 @@ package org.jonathanoliveira;
 * if (AT LEAST 1 INPUT): false, then OUTPUT ==  false
 * */
 
-class AND_Gate extends LogicGate {
+class AND_Gate extends LinearWiredLogicGate {
 
     AND_Gate() {
         // sending to the constructor the proper component type that we want to use in an AND gate
@@ -19,24 +19,6 @@ class AND_Gate extends LogicGate {
     AND_Gate(int numInputs) {
         // sending the superclass constructor the component type that we want (buffer) and the number of buffers we want
         super(ComponentType.BUFFER, numInputs);
-    }
-
-    // private method that wires all components with inputs and voltages in order to produce an AND gate behavior
-    @Override
-    void setAndWireComponents(boolean[] inputs) {
-        // initiate a boolean variable to hold the proper voltage value and set it to true
-        boolean relay_voltage = Binary.VOLTAGE.getValue();
-        // make a loop through all components of this gate
-        for (int i = 0; i < getNumInputs(); i++) {
-            // set relay input with input value
-            components[i].setInput(inputs[i]);
-            // set relay voltage with proper value
-            components[i].setVoltage(relay_voltage);
-            // set proper voltage value to output of the relay
-            relay_voltage = components[i].getOutput();
-        }
-        // after all wiring, set the AND gate output value to proper voltage value
-        setOutput(relay_voltage);
     }
 
 }
