@@ -12,13 +12,13 @@ package org.jonathanoliveira;
 class OR_Gate extends LogicGate {
 
     OR_Gate() {
-        //        Todo: send to the superclass constructor an Enum option
-        super();
+        // sending to the constructor the proper component type that we want to use in an AND gate
+        super(ComponentType.BUFFER);
     }
 
     OR_Gate(int numInputs) {
-        //        Todo: send to the superclass constructor an Enum option
-        super(numInputs);
+        // sending the superclass constructor the component type that we want (buffer) and the number of buffers we want
+        super(ComponentType.BUFFER, numInputs);
     }
 
     // private method that wires all components with inputs and voltages in order to produce an OR gate behavior

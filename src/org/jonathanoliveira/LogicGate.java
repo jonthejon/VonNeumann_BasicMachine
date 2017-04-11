@@ -14,26 +14,38 @@ abstract class LogicGate implements Inputable {
     // private field to hold the output of this gate
     boolean output;
 
-//    completed: create an Enum that will hold the possible components used in the creation of a logic gate: buffers or inverters
 //    this enum holds all the possible types of basic components (relays) used to create logic gates
     enum ComponentType { BUFFER, INVERTER }
 
     // constructor (default is a 2 input OR gate)
-//    TODO: update this constructor so it receives a Enum option
-    LogicGate() {
+    // this constructor has a component type argument in order to correctly create the proper logic gate.
+    LogicGate(ComponentType componentType) {
         //    initiate the field array to fit 2 relays
         components = new Configurable[2];
-//        TODO: based on the enum option set, populate the array with buffers or inverters
-        //    create first relay and set it to position 0
-        components[0] = new Buffer();
-        //    create second relay and set it to position 1
-        components[1] = new Buffer();
+        // switch statement to handle the proper component selected
+        switch (componentType) {
+            // gate must be constructed using buffers, instead of inverters.
+            case BUFFER:
+                //    create first relay and set it to position 0
+                components[0] = new Buffer();
+                //    create second relay and set it to position 1
+                components[1] = new Buffer();
+                break;
+
+            // gate must be constructed using buffers, instead of inverters.
+            case INVERTER:
+                //    create first relay and set it to position 0
+                components[0] = new Inverter();
+                //    create second relay and set it to position 1
+                components[1] = new Inverter();
+                break;
+
+        }
     }
 
     // constructor (3 and over input AND gate)
     // receives an int that tells how many UnitComponents (relays, in our case) that it must have.
-    //    TODO: update this second constructor so it receives a Enum option also
-    LogicGate(int numInputs) {
+    LogicGate(ComponentType componentType, int numInputs) {
         //  check to see if the number of components if bigger than 2. If true, proceed.
         if (numInputs > 2) {
             //    initiate the field array
@@ -41,8 +53,17 @@ abstract class LogicGate implements Inputable {
             //    loop for the number of requested relays
             for (int i = 0; i < numInputs; i++) {
                 //      initiate a new relay and put the relay inside the array
-                //        TODO: based on the enum option set, populate the array with buffers or inverters
-                components[i] = new Buffer();
+                // switch statement to handle the proper component selected
+                switch (componentType) {
+                    // gate must be constructed using buffers, instead of inverters.
+                    case BUFFER:
+                        components[i] = new Buffer();
+                        break;
+                    // gate must be constructed using buffers, instead of inverters.
+                    case INVERTER:
+                        components[i] = new Inverter();
+                        break;
+                }
             }
         // if there is an invalid number of components, an exception must be thrown
         } else {
