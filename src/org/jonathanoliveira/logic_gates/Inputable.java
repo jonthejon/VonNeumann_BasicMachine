@@ -1,4 +1,4 @@
-package org.jonathanoliveira;
+package org.jonathanoliveira.logic_gates;
 
 /**
  * This Interface will define the contract of all logic gates used in this project.

@@ -1,4 +1,4 @@
-package org.jonathanoliveira;
+package org.jonathanoliveira.basic_components;
 
 /*
 * This is the Superclass of all basic components.

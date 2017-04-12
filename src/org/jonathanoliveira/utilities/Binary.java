@@ -1,4 +1,4 @@
-package org.jonathanoliveira;
+package org.jonathanoliveira.utilities;
 
 /**
  * This Enum will hold the only two possible values for any voltage in the machine.

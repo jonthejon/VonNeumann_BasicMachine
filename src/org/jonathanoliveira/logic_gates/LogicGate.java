@@ -1,4 +1,8 @@
-package org.jonathanoliveira;
+package org.jonathanoliveira.logic_gates;
+
+import org.jonathanoliveira.basic_components.Buffer;
+import org.jonathanoliveira.basic_components.Configurable;
+import org.jonathanoliveira.basic_components.Inverter;
 
 /**
  * This is the superclass for all Logic Gates.

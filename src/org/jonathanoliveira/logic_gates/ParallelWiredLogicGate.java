@@ -1,4 +1,4 @@
-package org.jonathanoliveira;
+package org.jonathanoliveira.logic_gates;
 
 /**
  * This class will be responsible for performing the wiring of the basic components

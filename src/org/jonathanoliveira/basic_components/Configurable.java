@@ -1,4 +1,4 @@
-package org.jonathanoliveira;
+package org.jonathanoliveira.basic_components;
 
 /**
  * This Interface will define the contract of all single unit components used in

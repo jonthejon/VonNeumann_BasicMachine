@@ -1,4 +1,6 @@
-package org.jonathanoliveira;
+package org.jonathanoliveira.logic_gates;
+
+import org.jonathanoliveira.utilities.Binary;
 
 /**
  * This class will be responsible for performing the wiring of the basic components

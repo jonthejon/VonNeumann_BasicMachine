@@ -1,4 +1,4 @@
-package org.jonathanoliveira;
+package org.jonathanoliveira.logic_gates;
 
 /*
 * All gates are made of components, no matter how many.

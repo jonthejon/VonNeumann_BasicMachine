@@ -1,4 +1,6 @@
-package org.jonathanoliveira;
+package org.jonathanoliveira.basic_components;
+
+import org.jonathanoliveira.utilities.Binary;
 
 /**
  * Just like a Buffer, an Inverter is a basic Component.
@@ -13,7 +15,7 @@ package org.jonathanoliveira;
  *      has been properly set.
  */
 
-class Inverter extends BasicComponent {
+public class Inverter extends BasicComponent {
 
     @Override
     void setOutput() {
