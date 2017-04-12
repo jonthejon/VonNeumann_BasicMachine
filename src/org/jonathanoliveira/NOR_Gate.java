@@ -7,6 +7,13 @@ package org.jonathanoliveira;
 * So, in essence, the behavior of a NOR gate is the following:
 * if (ALL INPUTS): false, then OUTPUT ==  true
 * if (AT LEAST 1 INPUT): true, then OUTPUT ==  false
+*
+*     NOR | 0 | 1 |
+*    --------------
+*      0  | 1 | 0 |
+*    --------------
+*      1  | 0 | 0 |
+*
 * */
 
 class NOR_Gate extends LinearWiredLogicGate {

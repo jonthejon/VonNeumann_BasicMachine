@@ -7,6 +7,13 @@ package org.jonathanoliveira;
 * So, in essence, the behavior of an AND gate is the following:
 * if (ALL INPUTS): true, then OUTPUT ==  true
 * if (AT LEAST 1 INPUT): false, then OUTPUT ==  false
+*
+*     AND | 0 | 1 |
+*    --------------
+*      0  | 0 | 0 |
+*    --------------
+*      1  | 0 | 1 |
+*
 * */
 
 class AND_Gate extends LinearWiredLogicGate {
