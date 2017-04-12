@@ -9,7 +9,7 @@ import org.jonathanoliveira.utilities.Binary;
  * In our case, this means that AND_gate and NOR_gate will extend this class.
  */
 
-abstract class LinearWiredLogicGate extends LogicGate {
+abstract class LinearWiredLogicGate extends BasicLogicGate {
 
     LinearWiredLogicGate (ComponentType componentType) {
         super(componentType);

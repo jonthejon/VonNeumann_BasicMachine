@@ -10,7 +10,7 @@ import org.jonathanoliveira.basic_components.Inverter;
  * In our case, they will be AND, OR, NAND and NOR.
  */
 
-abstract class LogicGate implements Inputable {
+abstract class BasicLogicGate implements Inputable {
 
     // private field to hold the components that make up this gate
     // Configurable array with the size set by the constructor
@@ -23,7 +23,7 @@ abstract class LogicGate implements Inputable {
 
     // constructor (default is a 2 input OR gate)
     // this constructor has a component type argument in order to correctly create the proper logic gate.
-    LogicGate(ComponentType componentType) {
+    BasicLogicGate(ComponentType componentType) {
         //    initiate the field array to fit 2 relays
         components = new Configurable[2];
         // switch statement to handle the proper component selected
@@ -49,7 +49,7 @@ abstract class LogicGate implements Inputable {
 
     // constructor (3 and over input AND gate)
     // receives an int that tells how many UnitComponents (relays, in our case) that it must have.
-    LogicGate(ComponentType componentType, int numInputs) {
+    BasicLogicGate(ComponentType componentType, int numInputs) {
         //  check to see if the number of components if bigger than 2. If true, proceed.
         if (numInputs > 2) {
             //    initiate the field array

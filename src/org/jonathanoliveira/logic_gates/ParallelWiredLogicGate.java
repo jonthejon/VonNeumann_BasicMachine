@@ -7,7 +7,7 @@ package org.jonathanoliveira.logic_gates;
  * In our case, this means that OR_gate and NAND_Gate will extend this class.
  */
 
-class ParallelWiredLogicGate extends LogicGate {
+class ParallelWiredLogicGate extends BasicLogicGate {
 
     ParallelWiredLogicGate (ComponentType componentType) {
         super(componentType);
