@@ -7,10 +7,10 @@ import java.util.Arrays;
  * Class responsible for converting numbers from the decimal system to binary system and vice-versa.
  */
 
-class Converter {
+public class Converter {
 
     // binary to decimal method
-    int convert(int[] binary_number) {
+    public int convert(int[] binary_number) {
         // int variable that will store the decimal number
         int decimal_number = 0;
         // loop to calculate each bit of the binary number
@@ -23,7 +23,7 @@ class Converter {
     }
 
     // decimal to binary method
-    int[] convert(int decimal_number) {
+    public int[] convert(int decimal_number) {
         // verify if the decimal number is not a negative number.
         // this is because for now our adder will only handle positive numbers.
         if (decimal_number < 0) throw new IllegalArgumentException();
@@ -60,7 +60,7 @@ class Converter {
 
     // binary to boolean conversion method
     // this method will be used as an interface between our arrays that represent binary numbers to our arrays of booleans in which the logic gates work on
-    boolean[] convertToBooleans(int[] binary) {
+    public boolean[] convertToBooleans(int[] binary) {
         // initiate the boolean array with the same size of the binary array that will be sent as a result
         boolean[] bool_result = new boolean[binary.length];
         // loop inside the binary array
@@ -69,6 +69,19 @@ class Converter {
             bool_result[i] = (binary[i] == 1);
         }
         return bool_result;
+    }
+
+    // boolean to binary conversion method
+    // this method will be used as an interface between our arrays that represent binary numbers to our arrays of booleans in which the logic gates work on
+    public int[] convertFromBooleans(boolean[] booleans) {
+        // initiate the int array with the same size of the boolean array that will be sent as a result
+        int[] binary = new int[booleans.length];
+        // loop inside the boolean array
+        for (int i = 0; i < booleans.length; i++) {
+            // set the boolean to true or false, depending on the bit, 1 or 0
+            binary[i] = booleans[i] ? 1 : 0;
+        }
+        return binary;
     }
 
 
