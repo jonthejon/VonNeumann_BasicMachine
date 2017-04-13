@@ -50,7 +50,7 @@ class HalfAdder {
         and_gate = new AND_Gate();
     }
 
-    // method that sets the inputs of the the half adder. They will always be two.
+    // method that sets the inputs of the half adder. They will always be two.
     void setInputs(boolean inA, boolean inB) {
         // create a boolean array and initiate it with the adder inputs
         boolean[] inputs = new boolean[] {inA, inB};
