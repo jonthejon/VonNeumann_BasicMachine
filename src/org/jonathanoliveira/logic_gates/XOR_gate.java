@@ -1,5 +1,9 @@
 package org.jonathanoliveira.logic_gates;
 
+import org.jonathanoliveira.basic_components.Buffer;
+import org.jonathanoliveira.basic_components.Configurable;
+import org.jonathanoliveira.basic_components.Inverter;
+
 /**
  * The XOR gate is a more complex gate than the other ones created.
  * In order to create it, we must use other gates instead of just relays.
@@ -23,24 +27,21 @@ package org.jonathanoliveira.logic_gates;
  *    ----------------------------------------------
  *       1  |  1   |    1   |     0    |     0     |
  *
- * In essence, our XOR gate will be used to perform sums of binary numbers.
- * This means that we will only be concerned in receiving 2 inputs at a time.
- *
  */
 
 public class XOR_gate implements Inputable {
 
     // field to hold the output of this gate
     private boolean output;
-    // 2-input OR gate that is a component of this XOR gate
+    // OR gate that is a component of this XOR gate
     private OR_Gate or_gate;
-    // 2-input NAND gate that is a component of this XOR gate
+    // NAND gate that is a component of this XOR gate
     private NAND_Gate nand_gate;
-    // 2-input AND gate that is a component of this XOR gate
+    // AND gate that is a component of this XOR gate
     private AND_Gate and_gate;
 
-    // no-arg constructor that initiate all necessary gates
-    XOR_gate() {
+    // no-arg constructor that initiate all necessary 2-input gates
+    public XOR_gate() {
         // initiate the 2-input OR gate
         or_gate = new OR_Gate();
         // initiate the 2-input NAND gate
@@ -51,8 +52,8 @@ public class XOR_gate implements Inputable {
 
     @Override
     public int getNumInputs() {
-        // this gate will not accept more than 2 inputs
-        return 2;
+        // returns the number of inputs of any one of these gates.
+        return or_gate.getNumInputs();
     }
 
     @Override

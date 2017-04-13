@@ -16,9 +16,9 @@ package org.jonathanoliveira.logic_gates;
 *
 * */
 
-class AND_Gate extends LinearWiredLogicGate {
+public class AND_Gate extends LinearWiredLogicGate {
 
-    AND_Gate() {
+    public AND_Gate() {
         // sending to the constructor the proper component type that we want to use in an AND gate
         super(ComponentType.BUFFER);
     }
