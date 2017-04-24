@@ -38,7 +38,7 @@ If the input voltage of an inverter is true, the output voltage will be false.
 The behavior of an inverter can be described as:
 
 - INPUT == true, then OUTPUT == false
-- INPUT == false, then OUTPUT == VOLTAGE
+- INPUT == false, then OUTPUT == VOLTAGE == true
 
 ---
 We can wire together in different ways two or more of the relays mentioned above. Each kind of wiring (combination of relays) will produce a unique result based on the input voltages if the underlying relays. These bundled relays are commonly called Logic Gates, since the results presented by them mimic logic operations over their input voltages.
