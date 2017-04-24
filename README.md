@@ -1,18 +1,17 @@
 # VonNeumann_BasicMachine
-This project is designed to mimic the creation of a Von Neumann machine.
+This project is designed to mimic the physical fabrication process of the simplest possible digital computer, using relays, that follows the Von Neumann architecture. A computer that uses the Von Neumann architecture can be defined as any computer in which the program instructions, as well as its data, are kept in the same memory array (RAM).
 
 The book "Code: The Hidden Language of Computers", from Charles Petzold, is used as guideline for implementing a working Von Newumann Machine.
 
 Although the behavior of a logic gate can easily be accomplished using a couple of IF statements, the goal of this project is not to develop the most efficient code, but rather to mimic the physical development of a computer starting from the very basic components and wiring them out one by one.
 
-In this project, following the cited book, we are using Telegraph Relays as our most basic component and working up from it. But the project is coded towards interfaces, therefore, allowing a future shift in the use of transistor.
+In this project we'll use Telegraph Relays as our most basic component and build up all of our components from it.
 
 -------------------------------------------------
 
 DETAILS:
-This entire project is built upon the implmentation of a class that simulates the behavior of a telegraph relay.
- * For a graphical scheme of a telegraph relay, check out
- * https://www.google.com.br/url?sa=i&rct=j&q=&esrc=s&source=images&cd=&cad=rja&uact=8&ved=0ahUKEwjlxKzH1pDTAhWFTZAKHcnCBbcQjRwIBw&url=http%3A%2F%2Fcs.umw.edu%2F~finlayson%2Fclass%2Fspring16%2Fcpsc305%2Flabs%2F02-transistors.html&bvm=bv.152174688,d.Y2I&psig=AFQjCNE9XK95lXV6fjtYxeXoLbgjiSJULw&ust=1491597145245130
+This entire project is built upon the implementation of a class that simulates the behavior of a telegraph relay.
+- For a graphical scheme of a telegraph relay, check out: https://www.google.com.br/url?sa=i&rct=j&q=&esrc=s&source=images&cd=&cad=rja&uact=8&ved=0ahUKEwjlxKzH1pDTAhWFTZAKHcnCBbcQjRwIBw&url=http%3A%2F%2Fcs.umw.edu%2F~finlayson%2Fclass%2Fspring16%2Fcpsc305%2Flabs%2F02-transistors.html&bvm=bv.152174688,d.Y2I&psig=AFQjCNE9XK95lXV6fjtYxeXoLbgjiSJULw&ust=1491597145245130
 
 All relays are based in boolean (true/false) values that correspond to the existence of voltage.
 
