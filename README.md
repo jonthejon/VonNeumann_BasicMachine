@@ -26,19 +26,19 @@ We have basically two ways of wiring a Relay. Each way will make the final compo
 
 BUFFER:
 A Buffer is basically a common relay, in which it just replicates the signals sent as input to the output.
-Basically, if the input voltage of a buffer is true, the output voltage will also be true.
+So, if the input voltage of a buffer is true, the output voltage will also be true.
 The behavior of a buffer can be described as:
 
-- INPUT: true, then OUTPUT == VOLTAGE == true
-- INPUT: false, then OUTPUT == NO VOLTAGE == false
+- INPUT == true, then OUTPUT == VOLTAGE == true
+- INPUT == false, then OUTPUT == NO VOLTAGE == false
 
 INVERTER
 The Inverter behaves the oposite of the Buffer.
 If the input voltage of an inverter is true, the output voltage will be false.
 The behavior of an inverter can be described as:
 
-- INPUT: true, then OUTPUT == false
-- INPUT: false, then OUTPUT == VOLTAGE
+- INPUT == true, then OUTPUT == false
+- INPUT == false, then OUTPUT == VOLTAGE
 
 ---
 We can wire together in different ways two or more of the relays mentioned above. Each kind of wiring (combination of relays) will produce a unique result based on the input voltages if the underlying relays. These bundled relays are commonly called Logic Gates, since the results presented by them mimic logic operations over their input voltages.
