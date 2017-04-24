@@ -7,41 +7,46 @@ Although the behavior of a logic gate can easily be accomplished using a couple 
 
 In this project we'll use Telegraph Relays as our most basic component and build up all of our components from it.
 
--------------------------------------------------
-
-DETAILS:
+---
 This entire project is built upon the implementation of a class that simulates the behavior of a telegraph relay.
 - For a graphical scheme of a telegraph relay, check out: https://www.google.com.br/url?sa=i&rct=j&q=&esrc=s&source=images&cd=&cad=rja&uact=8&ved=0ahUKEwjlxKzH1pDTAhWFTZAKHcnCBbcQjRwIBw&url=http%3A%2F%2Fcs.umw.edu%2F~finlayson%2Fclass%2Fspring16%2Fcpsc305%2Flabs%2F02-transistors.html&bvm=bv.152174688,d.Y2I&psig=AFQjCNE9XK95lXV6fjtYxeXoLbgjiSJULw&ust=1491597145245130
 
-All relays are based in boolean (true/false) values that correspond to the existence of voltage.
+All relays are based in boolean (true/false) values that correspond to the existence of voltage in the wires of the relays. True = voltage. False = no voltage.
 
-From the Relay, other components can be created with increasing complexity.
+---
+We have basically two ways of wiring a Relay. Each way will make the final component behave differently: as a data buffer or as a data inverter.
 
 BUFFER:
-A Buffer is basically a relay, in which it just replicates the signals sent as input to the relay.
-Basically, if the input voltage of a buffer is true, the output value will also be true.
-So, in essence, the behavior of a buffer is the following:
-  * if INPUT: true, then OUTPUT == VOLTAGE
-  * if INPUT: false, then OUTPUT == false
+A Buffer is basically a common relay, in which it just replicates the signals sent as input to the output.
+Basically, if the input voltage of a buffer is true, the output voltage will also be true.
+The behavior of a buffer can be described as:
+
+- INPUT: true, then OUTPUT == VOLTAGE == true
+- INPUT: false, then OUTPUT == NO VOLTAGE == false
 
 INVERTER
-Just like a Buffer, an Inverter is a basic Component.
-All inverters are based in boolean (true/false) values that correspond to the existence of voltage.
-Basically, if the input voltage of an is true, the output value will be false.
-So, in essence, the behavior of an inverter is the following:
- * if INPUT: true, then OUTPUT == false
- * if INPUT: false, then OUTPUT == VOLTAGE
+The Inverter behaves the oposite of the Buffer.
+If the input voltage of an inverter is true, the output voltage will be false.
+The behavior of an inverter can be described as:
 
-AND (logic gate)
+- INPUT: true, then OUTPUT == false
+- INPUT: false, then OUTPUT == VOLTAGE
+
+---
+We can wire together in different ways two or more of the relays mentioned above. Each kind of wiring (combination of relays) will produce a unique result based on the input voltages if the underlying relays. These bundled relays are commonly called Logic Gates, since the results presented by them mimic logic operations over their input voltages.
+
+AND GATE
 The behavior of an AND gate is the following:
-* if (ALL INPUTS): true, then OUTPUT ==  true
-* if (AT LEAST 1 INPUT): false, then OUTPUT ==  false
+- (ALL INPUTS) == true, then OUTPUT ==  true
+- (AT LEAST 1 INPUT) == false, then OUTPUT ==  false
+So a 2-input AND gate have an ouput behavior described by the following table:
 
      AND | 0 | 1 |
     --------------
       0  | 0 | 0 |
     --------------
       1  | 0 | 1 |
+
 
 NAND (logic gate)
 The behavior of a NAND gate is the following:
