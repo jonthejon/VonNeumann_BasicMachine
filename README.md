@@ -37,7 +37,7 @@ The Inverter has the oposite behavior of a Buffer.
 If the input voltage of an inverter is true, the output voltage will be false.
 The behavior of an inverter can be described as:
 
-- INPUT == true, then OUTPUT == false
+- INPUT == true, then OUTPUT == NO VOLTAGE == false
 - INPUT == false, then OUTPUT == VOLTAGE == true
 
 ---
