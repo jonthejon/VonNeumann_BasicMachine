@@ -6,6 +6,7 @@ This project is in Execution Phase with new functionalities being added over tim
      
 ---
 PROJECT OVERVIEW
+
 This project is designed to mimic the physical fabrication process of the simplest possible digital computer, using relays, that follows the Von Neumann architecture. A computer that uses the Von Neumann architecture can be defined as any computer in which the program instructions, as well as its data, are kept in the same memory array (RAM).
 
 The book "Code: The Hidden Language of Computers", from Charles Petzold, is used as guideline for implementing a working Von Newumann Machine.
