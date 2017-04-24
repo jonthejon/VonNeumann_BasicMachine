@@ -70,4 +70,4 @@ The XOR gate behaves just as the OR gate, but with a catch: the output will be t
 - (AT PRECISELY 1 INPUT) == true, then OUTPUT ==  true
 
 ---
-Logic gates can also be wired one to another in many different ways. The wiring of logic gates and basic relays to each other can produce an array of components of ever-increasing complexity. Such components can be used to perform mathematical computations with binary numbers that, in a way, at the core of every modern computer.
+Logic gates can also be wired one to another in many different ways. The wiring of logic gates and basic relays to each other can produce an array of components of ever-increasing complexity. Such components can be used to perform mathematical computations with binary numbers that, in a way, are at the core of every modern computer.
