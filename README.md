@@ -1,4 +1,11 @@
 # VonNeumann_BasicMachine
+
+THIS PROJECT IS AT DEVELOPMENT PHASE, WITH NEW FUNCTIONALITIES BEING ADDED OVER TIME. THE LATEST ABILITY OF THIS VON NEUMANN MACHINE IS:
+
+     adding any two positive numbers together
+     
+---
+PROJECT OVERVIEW
 This project is designed to mimic the physical fabrication process of the simplest possible digital computer, using relays, that follows the Von Neumann architecture. A computer that uses the Von Neumann architecture can be defined as any computer in which the program instructions, as well as its data, are kept in the same memory array (RAM).
 
 The book "Code: The Hidden Language of Computers", from Charles Petzold, is used as guideline for implementing a working Von Newumann Machine.
@@ -39,59 +46,27 @@ AND GATE
 The behavior of an AND gate is the following:
 - (ALL INPUTS) == true, then OUTPUT ==  true
 - (AT LEAST 1 INPUT) == false, then OUTPUT ==  false
-So a 2-input AND gate have an ouput behavior described by the following table:
 
-     AND | 0 | 1 |
-    --------------
-      0  | 0 | 0 |
-    --------------
-      1  | 0 | 1 |
+NAND GATE
+The NAND gate has the oposite behavior of the AND gate:
+- (ALL INPUTS) == true, then OUTPUT ==  false
+- (AT LEAST 1 INPUT) == false, then OUTPUT ==  true
 
-
-NAND (logic gate)
-The behavior of a NAND gate is the following:
-* if (ALL INPUTS): true, then OUTPUT ==  false
-* if (AT LEAST 1 INPUT): false, then OUTPUT ==  true
-
-    NAND | 0 | 1 |
-    --------------
-      0  | 1 | 1 |
-    --------------
-      1  | 1 | 0 |
-
-OR (logic gate)
+OR GATE
 The behavior of an OR gate is the following:
-* if (ALL INPUTS): false, then OUTPUT ==  false
-* if (AT LEAST 1 INPUT): true, then OUTPUT ==  true
+- (ALL INPUTS) == false, then OUTPUT ==  false
+- (AT LEAST 1 INPUT) == true, then OUTPUT ==  true
 
-      OR | 0 | 1 |
-    --------------
-      0  | 0 | 1 |
-    --------------
-      1  | 1 | 1 |
+NOR GATE
+The NOR gate has the oposite behavior of the OR gate:
+- (ALL INPUTS) == false, then OUTPUT ==  true
+- (AT LEAST 1 INPUT) == true, then OUTPUT ==  false
 
-NOR (logic gate)
-The behavior of a NOR gate is the following:
-* if (ALL INPUTS): false, then OUTPUT ==  true
-* if (AT LEAST 1 INPUT): true, then OUTPUT ==  false
+XOR GATE
+The XOR gate behaves just as the OR gate, but with a catch: the output will be true only if exactly one of the inputs is true:
+- (ALL INPUTS) == true, then OUTPUT ==  false
+- (ALL INPUTS) == false, then OUTPUT ==  false
+- (AT PRECISELY 1 INPUT) == true, then OUTPUT ==  true
 
-     NOR | 0 | 1 |
-    --------------
-      0  | 1 | 0 |
-    --------------
-      1  | 0 | 0 |
-
-XOR (logic gate)
-The behavior of an XOR gate:
-* the output will be true only if EXCLUSIVELY ONE of the inputs is true.
-
-     XOR | 0 | 1 |
-    --------------
-      0  | 0 | 1 |
-    --------------
-      1  | 1 | 0 |
-
--------------------------------------------------
-
-These components can be wired in specific ways in order to perform logic calculations on binary numbers such as additions.
-After making our machine learn how to add, it will be ready to calculate just about anything, since everything can be simplified to a combination of multiple additions.
+---
+Logic gates can also be wired one to another in many different ways. The wiring of logic gates and basic relays to each other can produce an array of components of ever-increasing complexity. Such components can be used to perform mathematical computations with binary numbers that, in a way, at the core of every modern computer.
