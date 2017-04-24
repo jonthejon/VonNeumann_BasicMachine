@@ -24,7 +24,7 @@ All relays are based in boolean (true/false) values that correspond to the exist
 ---
 We have basically two ways of wiring a Relay. Each way will make the final component behave differently: as a data buffer or as a data inverter.
 
-BUFFER:
+BUFFER:  
 A Buffer is basically a common relay, in which it just replicates the signals sent as input to the output.
 So, if the input voltage of a buffer is true, the output voltage will also be true.
 The behavior of a buffer can be described as:
@@ -32,7 +32,7 @@ The behavior of a buffer can be described as:
 - INPUT == true, then OUTPUT == VOLTAGE == true
 - INPUT == false, then OUTPUT == NO VOLTAGE == false
 
-INVERTER
+INVERTER:  
 The Inverter behaves the oposite of the Buffer.
 If the input voltage of an inverter is true, the output voltage will be false.
 The behavior of an inverter can be described as:
@@ -43,27 +43,27 @@ The behavior of an inverter can be described as:
 ---
 We can wire together in different ways two or more of the relays mentioned above. Each kind of wiring (combination of relays) will produce a unique result based on the input voltages if the underlying relays. These bundled relays are commonly called Logic Gates, since the results presented by them mimic logic operations over their input voltages.
 
-AND GATE
+AND GATE:  
 The behavior of an AND gate is the following:
 - (ALL INPUTS) == true, then OUTPUT ==  true
 - (AT LEAST 1 INPUT) == false, then OUTPUT ==  false
 
-NAND GATE
+NAND GATE:  
 The NAND gate has the oposite behavior of the AND gate:
 - (ALL INPUTS) == true, then OUTPUT ==  false
 - (AT LEAST 1 INPUT) == false, then OUTPUT ==  true
 
-OR GATE
+OR GATE:  
 The behavior of an OR gate is the following:
 - (ALL INPUTS) == false, then OUTPUT ==  false
 - (AT LEAST 1 INPUT) == true, then OUTPUT ==  true
 
-NOR GATE
+NOR GATE:  
 The NOR gate has the oposite behavior of the OR gate:
 - (ALL INPUTS) == false, then OUTPUT ==  true
 - (AT LEAST 1 INPUT) == true, then OUTPUT ==  false
 
-XOR GATE
+XOR GATE:  
 The XOR gate behaves just as the OR gate, but with a catch: the output will be true only if exactly one of the inputs is true:
 - (ALL INPUTS) == true, then OUTPUT ==  false
 - (ALL INPUTS) == false, then OUTPUT ==  false
