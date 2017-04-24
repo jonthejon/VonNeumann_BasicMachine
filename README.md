@@ -1,8 +1,8 @@
 # VonNeumann_BasicMachine
 
-THIS PROJECT IS AT DEVELOPMENT PHASE, WITH NEW FUNCTIONALITIES BEING ADDED OVER TIME. THE LATEST ABILITY OF THIS VON NEUMANN MACHINE IS:
+This project is in Execution Phase with new functionalities being added over time. The latest functionality implemented on this Von Neumann machine is:
 
-     adding any two positive numbers together
+     adds any two positive integer numbers together
      
 ---
 PROJECT OVERVIEW
