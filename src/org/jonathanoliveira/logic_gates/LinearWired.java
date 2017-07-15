@@ -9,13 +9,13 @@ import org.jonathanoliveira.utilities.Binary;
  * In our case, this means that AND_gate and NOR_gate will extend this class.
  */
 
-abstract class LinearWiredLogicGate extends BasicLogicGate {
+abstract class LinearWired extends BasicLogicGate {
 
-    LinearWiredLogicGate (ComponentType componentType) {
+    LinearWired(ComponentType componentType) {
         super(componentType);
     }
 
-    LinearWiredLogicGate (ComponentType componentType, int numInputs) {
+    LinearWired(ComponentType componentType, int numInputs) {
         super(componentType, numInputs);
     }
 
@@ -26,9 +26,9 @@ abstract class LinearWiredLogicGate extends BasicLogicGate {
         boolean relay_voltage = Binary.VOLTAGE.getValue();
         // make a loop through all components of this gate
         for (int i = 0; i < getNumInputs(); i++) {
-            // set relay input with input value
+            // set component input with input value
             components[i].setInput(inputs[i]);
-            // set relay voltage with proper value
+            // set component voltage with proper value
             components[i].setVoltage(relay_voltage);
             // set proper voltage value to output of the relay
             relay_voltage = components[i].getOutput();

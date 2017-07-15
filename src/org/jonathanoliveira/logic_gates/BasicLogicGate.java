@@ -1,13 +1,12 @@
 package org.jonathanoliveira.logic_gates;
 
-import org.jonathanoliveira.basic_components.Buffer;
+import org.jonathanoliveira.basic_components.Relay;
 import org.jonathanoliveira.basic_components.Configurable;
 import org.jonathanoliveira.basic_components.Inverter;
 
 /**
  * This is the superclass for all Logic Gates.
  * In here you'll find all the common behavior of the logic gates.
- * In our case, they will be AND, OR, NAND and NOR.
  */
 
 abstract class BasicLogicGate implements Inputable {
@@ -19,7 +18,7 @@ abstract class BasicLogicGate implements Inputable {
     boolean output;
 
 //    this enum holds all the possible types of basic components (relays) used to create logic gates
-    enum ComponentType { BUFFER, INVERTER }
+    enum ComponentType { RELAY, INVERTER }
 
     // constructor (default is a 2 input OR gate)
     // this constructor has a component type argument in order to correctly create the proper logic gate.
@@ -28,19 +27,19 @@ abstract class BasicLogicGate implements Inputable {
         components = new Configurable[2];
         // switch statement to handle the proper component selected
         switch (componentType) {
-            // gate must be constructed using buffers, instead of inverters.
-            case BUFFER:
+            // gate must be constructed using relays, instead of inverters.
+            case RELAY:
                 //    create first relay and set it to position 0
-                components[0] = new Buffer();
+                components[0] = new Relay();
                 //    create second relay and set it to position 1
-                components[1] = new Buffer();
+                components[1] = new Relay();
                 break;
 
-            // gate must be constructed using buffers, instead of inverters.
+            // gate must be constructed using inverters, instead of relays.
             case INVERTER:
-                //    create first relay and set it to position 0
+                //    create first inverter and set it to position 0
                 components[0] = new Inverter();
-                //    create second relay and set it to position 1
+                //    create second inverter and set it to position 1
                 components[1] = new Inverter();
                 break;
 
@@ -48,7 +47,7 @@ abstract class BasicLogicGate implements Inputable {
     }
 
     // constructor (3 and over input AND gate)
-    // receives an int that tells how many UnitComponents (relays, in our case) that it must have.
+    // receives an int that tells how many UnitComponents that it must have.
     BasicLogicGate(ComponentType componentType, int numInputs) {
         //  check to see if the number of components if bigger than 2. If true, proceed.
         if (numInputs > 2) {
@@ -56,14 +55,14 @@ abstract class BasicLogicGate implements Inputable {
             components = new Configurable[numInputs];
             //    loop for the number of requested relays
             for (int i = 0; i < numInputs; i++) {
-                //      initiate a new relay and put the relay inside the array
+                // initiate a new relay and put the relay inside the array
                 // switch statement to handle the proper component selected
                 switch (componentType) {
-                    // gate must be constructed using buffers, instead of inverters.
-                    case BUFFER:
-                        components[i] = new Buffer();
+                    // gate must be constructed using relays, instead of inverters.
+                    case RELAY:
+                        components[i] = new Relay();
                         break;
-                    // gate must be constructed using buffers, instead of inverters.
+                    // gate must be constructed using inverters, instead of relays.
                     case INVERTER:
                         components[i] = new Inverter();
                         break;
@@ -89,7 +88,7 @@ abstract class BasicLogicGate implements Inputable {
         // if not, throw an exception
         if (inputs.length != getNumInputs()) throw new IllegalArgumentException();
 
-        // after checking, call a method (array of inputs) that will wire all components with inputs and voltages in order to produce an AND gate behavior
+        // after checking, call a method (array of inputs) that will wire all components with inputs and voltages in order to produce the gate behavior
         setAndWireComponents(inputs);
     }
 
@@ -104,7 +103,7 @@ abstract class BasicLogicGate implements Inputable {
         this.output = output;
     }
 
-    // method that wires all components with inputs and voltages in order to produce an AND gate behavior
+    // method that wires all components with inputs and voltages in order to produce the gate behavior
     // each different logic gate will have a unique implementation of this method
     abstract void setAndWireComponents(boolean[] inputs);
 

@@ -124,4 +124,163 @@ public class ConverterTest {
         assertEquals(expected[6], bool_arr[6]);
         assertEquals(expected[7], bool_arr[7]);
     }
+
+    // STEP 1) create an overloaded method to convert from decimal to binary that produces a fixed bit-sized number
+    // STEP 2) rename all overloaded convert() methods to make it clear that we are handling with unsigned binary values
+    // STEP 3) create overloaded methods to handle decimal to signed binary and signed binary to decimal
+
+    // ------------ decimal to unsigned binary (pre-defined bit-size) ------------
+
+    // testing the attempt to convert_unsigned a decimal number with not sufficient binary digits
+    // decimal 8 is 1000 in binary, but we are requesting an 3-digit number
+    @Test (expected = IllegalArgumentException.class)
+    public void dec_InvalidBitSize_8_to_binary() throws Exception {
+        Converter converter = new Converter();
+        int[] bin_num = converter.convert(8,3);
+    }
+
+    // testing the attempt to convert_unsigned a decimal number with not sufficient binary digits
+    // decimal 256 is 100000000 in binary, but we are requesting an 8-digit number
+    @Test (expected = IllegalArgumentException.class)
+    public void dec_InvalidBitSize_256_to_binary() throws Exception {
+        Converter converter = new Converter();
+        int[] bin_num = converter.convert(256,8);
+    }
+
+    // testing the conversion of decimal 150 to binary 10010110
+    // 150 needs at least 8 bits to be represented in binary, so this test should pass
+    @Test
+    public void dec_150_to_binary_8_bitsize() throws Exception {
+        Converter converter = new Converter();
+        int[] bin_num = converter.convert(150,8);
+        int[] expected = new int[] {1,0,0,1,0,1,1,0};
+        assertEquals(expected[0], bin_num[0]);
+        assertEquals(expected[1], bin_num[1]);
+        assertEquals(expected[2], bin_num[2]);
+        assertEquals(expected[3], bin_num[3]);
+        assertEquals(expected[4], bin_num[4]);
+        assertEquals(expected[5], bin_num[5]);
+        assertEquals(expected[6], bin_num[6]);
+        assertEquals(expected[7], bin_num[7]);
+    }
+
+    // testing the conversion of decimal 150 to binary 000010010110
+    // 150 needs at least 8 bits to be represented in binary and we are requesting a 12-bit binary number, so this test should pass
+    @Test
+    public void dec_150_to_binary_12_bitsize() throws Exception {
+        Converter converter = new Converter();
+        int[] bin_num = converter.convert(150,12);
+        int[] expected = new int[] {0,0,0,0,1,0,0,1,0,1,1,0};
+        assertEquals(expected[0], bin_num[0]);
+        assertEquals(expected[1], bin_num[1]);
+        assertEquals(expected[2], bin_num[2]);
+        assertEquals(expected[3], bin_num[3]);
+        assertEquals(expected[4], bin_num[4]);
+        assertEquals(expected[5], bin_num[5]);
+        assertEquals(expected[6], bin_num[6]);
+        assertEquals(expected[7], bin_num[7]);
+        assertEquals(expected[8], bin_num[8]);
+        assertEquals(expected[9], bin_num[9]);
+        assertEquals(expected[10], bin_num[10]);
+        assertEquals(expected[11], bin_num[11]);
+    }
+
+    // ------------ decimal to signed binary ------------
+    // testing the attempt to convert_signed a decimal number with not sufficient binary digits
+    // the range of a 8-bit signed binary number is -128 to 127.
+    // So converting 130 to an 8-bit binary should throw an exception.
+    @Test (expected = IllegalArgumentException.class)
+    public void dec_Sign_InvalidBitSize_130_to_binary() throws Exception {
+        Converter converter = new Converter();
+        int[] bin_num = converter.convert_signed(130,8);
+    }
+
+    // testing the attempt to convert_signed a decimal number with not sufficient binary digits
+    // the range of a 16-bit signed binary number is -32768 to 32767.
+    // So converting -33000 to a 16-bit binary should throw an exception.
+    @Test (expected = IllegalArgumentException.class)
+    public void dec_Sign_InvalidBitSize_33000_to_binary() throws Exception {
+        Converter converter = new Converter();
+        int[] bin_num = converter.convert_signed(33000,16);
+    }
+
+    // testing the conversion of decimal 3 to an 8-bit signed binary (00000011)
+    @Test
+    public void dec_3_to_SignedBin_8_bitsize() throws Exception {
+        Converter converter = new Converter();
+        int[] bin_num = converter.convert_signed(3,8);
+        int[] expected = new int[] {0,0,0,0,0,0,1,1};
+        assertEquals(expected[0], bin_num[0]);
+        assertEquals(expected[1], bin_num[1]);
+        assertEquals(expected[2], bin_num[2]);
+        assertEquals(expected[3], bin_num[3]);
+        assertEquals(expected[4], bin_num[4]);
+        assertEquals(expected[5], bin_num[5]);
+        assertEquals(expected[6], bin_num[6]);
+        assertEquals(expected[7], bin_num[7]);
+    }
+
+    // testing the conversion of decimal -125 to an 8-bit signed binary (10000011)
+    @Test
+    public void dec_neg125_to_SignedBin_8_bitsize() throws Exception {
+        Converter converter = new Converter();
+        int[] bin_num = converter.convert_signed(-125,8);
+        int[] expected = new int[] {1,0,0,0,0,0,1,1};
+        assertEquals(expected[0], bin_num[0]);
+        assertEquals(expected[1], bin_num[1]);
+        assertEquals(expected[2], bin_num[2]);
+        assertEquals(expected[3], bin_num[3]);
+        assertEquals(expected[4], bin_num[4]);
+        assertEquals(expected[5], bin_num[5]);
+        assertEquals(expected[6], bin_num[6]);
+        assertEquals(expected[7], bin_num[7]);
+    }
+
+    // testing the conversion of decimal -2 to an 8-bit signed binary (11111110)
+    @Test
+    public void dec_neg2_to_SignedBin_8_bitsize() throws Exception {
+        Converter converter = new Converter();
+        int[] bin_num = converter.convert_signed(-2,8);
+        int[] expected = new int[] {1,1,1,1,1,1,1,0};
+        assertEquals(expected[0], bin_num[0]);
+        assertEquals(expected[1], bin_num[1]);
+        assertEquals(expected[2], bin_num[2]);
+        assertEquals(expected[3], bin_num[3]);
+        assertEquals(expected[4], bin_num[4]);
+        assertEquals(expected[5], bin_num[5]);
+        assertEquals(expected[6], bin_num[6]);
+        assertEquals(expected[7], bin_num[7]);
+    }
+
+    // ------------ signed binary to decimal ------------
+
+/*
+    // testing the conversion of signed binary 11111110 to decimal -2
+    @Test
+    public void signedBin_11111110_to_decimal() throws Exception {
+        Converter converter = new Converter();
+        int[] bin_num = new int[] {1,1,1,1,1,1,1,0};
+        int dec_num = converter.convert_signed(bin_num);
+        assertEquals(-2, dec_num);
+    }
+
+    // testing the conversion of signed binary 10000000 to decimal -128
+    @Test
+    public void signedBin_10000000_to_decimal() throws Exception {
+        Converter converter = new Converter();
+        int[] bin_num = new int[] {1,0,0,0,0,0,0,0};
+        int dec_num = converter.convert_signed(bin_num);
+        assertEquals(-128, dec_num);
+    }
+
+    // testing the conversion of signed binary 01111100 to decimal 124
+    @Test
+    public void signedBin_01111100_to_decimal() throws Exception {
+        Converter converter = new Converter();
+        int[] bin_num = new int[] {0,1,1,1,1,1,0,0};
+        int dec_num = converter.convert_signed(bin_num);
+        assertEquals(124, dec_num);
+    }
+*/
+
 }

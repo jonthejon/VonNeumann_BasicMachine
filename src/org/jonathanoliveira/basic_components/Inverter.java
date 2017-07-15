@@ -3,7 +3,7 @@ package org.jonathanoliveira.basic_components;
 import org.jonathanoliveira.utilities.Binary;
 
 /**
- * Just like a Buffer, an Inverter is a basic Component.
+ * Just like a Relay, an Inverter is a basic Component.
  * All inverters are based in boolean (true/false) values that correspond to the existence of voltage.
  * Basically, if the input voltage of an is true, the output value will be false.
  *

@@ -16,7 +16,7 @@ package org.jonathanoliveira.logic_gates;
 *
 * */
 
-class NOR_Gate extends LinearWiredLogicGate {
+class NOR_Gate extends LinearWired {
 
     NOR_Gate() {
         // sending to the constructor the proper component (inverter) type that we want to use in an AND gate

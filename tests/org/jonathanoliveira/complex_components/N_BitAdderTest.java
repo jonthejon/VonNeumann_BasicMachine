@@ -57,4 +57,50 @@ public class N_BitAdderTest {
         int dec_result = converter.convert(converter.convertFromBooleans(adder.getResult()));
         assertEquals(19, dec_result);
     }
+
+// 4) fix the adder so it results only binary numbers with the same length as its inputs (fix the proper tests)
+// 5) refactor the adder for problematic results (fix the proper tests)
+
+    // ------------ calculations with signed binary numbers ------------
+
+/*
+    // test the sum of signed decimals numbers after conversion into signed binary and back
+    @Test
+    public void check_sum_9_neg10() throws Exception {
+        Converter converter = new Converter();
+        boolean[] inA = converter.convertToBooleans(converter.convert_signed(9,8));
+        boolean[] inB = converter.convertToBooleans(converter.convert_signed(-10,8));
+        N_BitAdder adder = new N_BitAdder(inA.length);
+        adder.setInputs(inA, inB, true);
+        int dec_result = converter.convert_signed(converter.convertFromBooleans(adder.getResult()));
+        assertEquals(-1, dec_result);
+    }
+
+    // test the sum of signed decimals numbers after conversion into signed binary and back
+    @Test (expected = IllegalArgumentException.class)
+    public void check_sum_neg120_neg110() throws Exception {
+        Converter converter = new Converter();
+        boolean[] inA = converter.convertToBooleans(converter.convert_signed(-120,8));
+        boolean[] inB = converter.convertToBooleans(converter.convert_signed(-110,8));
+        N_BitAdder adder = new N_BitAdder(inA.length);
+        adder.setInputs(inA, inB, true);
+        int dec_result = converter.convert_signed(converter.convertFromBooleans(adder.getResult()));
+        assertEquals(-230, dec_result);
+    }
+
+    // test the sum of signed decimals numbers after conversion into signed binary and back
+    @Test
+    public void check_sum_neg100_110() throws Exception {
+        Converter converter = new Converter();
+        boolean[] inA = converter.convertToBooleans(converter.convert_signed(-100,8));
+        boolean[] inB = converter.convertToBooleans(converter.convert_signed(110,8));
+        N_BitAdder adder = new N_BitAdder(inA.length);
+        adder.setInputs(inA, inB, true);
+        int dec_result = converter.convert_signed(converter.convertFromBooleans(adder.getResult()));
+        assertEquals(10, dec_result);
+    }
+*/
+
+
 }
+

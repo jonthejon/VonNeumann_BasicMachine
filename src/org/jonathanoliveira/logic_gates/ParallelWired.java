@@ -1,5 +1,7 @@
 package org.jonathanoliveira.logic_gates;
 
+import org.jonathanoliveira.utilities.Binary;
+
 /**
  * This class will be responsible for performing the wiring of the basic components
  * in a parallel way. This means that all logic gates that have a parallel configuration
@@ -7,13 +9,13 @@ package org.jonathanoliveira.logic_gates;
  * In our case, this means that OR_gate and NAND_Gate will extend this class.
  */
 
-class ParallelWiredLogicGate extends BasicLogicGate {
+class ParallelWired extends BasicLogicGate {
 
-    ParallelWiredLogicGate (ComponentType componentType) {
+    ParallelWired(ComponentType componentType) {
         super(componentType);
     }
 
-    ParallelWiredLogicGate (ComponentType componentType, int numInputs) {
+    ParallelWired(ComponentType componentType, int numInputs) {
         super(componentType, numInputs);
     }
 
@@ -21,7 +23,7 @@ class ParallelWiredLogicGate extends BasicLogicGate {
     @Override
     void setAndWireComponents(boolean[] inputs) {
         // initiate a boolean variable to hold the proper voltage value and set it to false (false will be the default output of the OR gate)
-        boolean relay_voltage = false;
+        boolean relay_voltage = Binary.NO_VOLTAGE.getValue();
         // make a loop through all components of this gate
         for (int i = 0; i < getNumInputs(); i++) {
             // set relay input with input value

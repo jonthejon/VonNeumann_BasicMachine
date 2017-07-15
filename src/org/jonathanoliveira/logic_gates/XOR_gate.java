@@ -1,9 +1,5 @@
 package org.jonathanoliveira.logic_gates;
 
-import org.jonathanoliveira.basic_components.Buffer;
-import org.jonathanoliveira.basic_components.Configurable;
-import org.jonathanoliveira.basic_components.Inverter;
-
 /**
  * The XOR gate is a more complex gate than the other ones created.
  * In order to create it, we must use other gates instead of just relays.

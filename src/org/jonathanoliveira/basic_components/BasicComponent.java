@@ -41,6 +41,7 @@ abstract class BasicComponent implements Configurable {
     }
 
 //    this method implements the behavior of a particular component
+//    this is how we are defining how a particular component should be wired
     abstract void setOutput();
 
 }

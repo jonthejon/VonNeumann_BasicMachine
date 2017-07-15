@@ -16,7 +16,7 @@ package org.jonathanoliveira.logic_gates;
 *
 * */
 
-class NAND_Gate extends ParallelWiredLogicGate {
+class NAND_Gate extends ParallelWired {
 
     NAND_Gate() {
         // sending to the constructor the proper component (inverter) type that we want to use in an NAND gate

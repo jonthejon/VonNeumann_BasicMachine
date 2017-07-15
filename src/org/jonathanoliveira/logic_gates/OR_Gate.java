@@ -16,16 +16,16 @@ package org.jonathanoliveira.logic_gates;
 *
 * */
 
-public class OR_Gate extends ParallelWiredLogicGate {
+public class OR_Gate extends ParallelWired {
 
     public OR_Gate() {
         // sending to the constructor the proper component type that we want to use in an AND gate
-        super(ComponentType.BUFFER);
+        super(ComponentType.RELAY);
     }
 
     OR_Gate(int numInputs) {
         // sending the superclass constructor the component type that we want (buffer) and the number of buffers we want
-        super(ComponentType.BUFFER, numInputs);
+        super(ComponentType.RELAY, numInputs);
     }
 
 }
