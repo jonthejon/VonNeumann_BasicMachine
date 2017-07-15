@@ -20,15 +20,19 @@ import org.jonathanoliveira.utilities.Binary;
 
 public class Relay extends BasicComponent {
 
+    /**
+     * The wiring process is not persistent.
+     * This means that every time one of the inputs changes, the wiring must be done from scratch.
+     * This will ensure that the output is always up-to-date with the inputs.
+     */
     @Override
-    void setOutput() {
+    public void wire() {
 //      IF input is true, then output must be equal to voltage
         if (getInput()) {
-            this.output = getVoltage();
+            this.setOutput(getVoltage());
 //      IF input is false, then output must have no voltage
         } else {
-            this.output = Binary.NO_VOLTAGE.getValue();
+            this.setOutput(Binary.NO_VOLTAGE.getValue());
         }
     }
-
 }

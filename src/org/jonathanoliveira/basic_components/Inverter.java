@@ -18,13 +18,13 @@ import org.jonathanoliveira.utilities.Binary;
 public class Inverter extends BasicComponent {
 
     @Override
-    void setOutput() {
+    public void wire() {
 //      IF input is true, then output must have no voltage
         if (getInput()) {
-            this.output = Binary.NO_VOLTAGE.getValue();
+            this.setOutput(Binary.NO_VOLTAGE.getValue());
 //      IF input is false, then output must be equal to voltage
         } else {
-            this.output = getVoltage();
+            this.setOutput(getVoltage());
         }
     }
 }

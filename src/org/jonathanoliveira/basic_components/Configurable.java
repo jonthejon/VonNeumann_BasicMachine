@@ -25,7 +25,11 @@ public interface Configurable {
     void setInput(boolean input);
     boolean getInput();
 
-//    getter method to check the output of the component
+//    getter and setter methods for the output of the component
     boolean getOutput();
+    void setOutput(boolean output);
+
+//    method that will handle the wiring of the component
+    void wire();
 
 }

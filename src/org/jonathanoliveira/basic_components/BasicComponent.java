@@ -7,16 +7,26 @@ package org.jonathanoliveira.basic_components;
 * their own subclasses.
 * */
 
+import org.jonathanoliveira.utilities.Binary;
+
 abstract class BasicComponent implements Configurable {
 
-    private boolean input;
-    //    the default value of voltage is true, unless else defined by a Logic gate.
-    private boolean voltage = true;
-    boolean output;
+//    the default value of input is true, unless else defined by a Logic gate.
+    private boolean input = Binary.VOLTAGE.getValue();
+    /*private boolean input;*/
+//    the default value of voltage is true, unless else defined by a Logic gate.
+    private boolean voltage = Binary.VOLTAGE.getValue();
+//    output has no default value. It will be calculated after the wiring of the components
+    private boolean output;
+
+    BasicComponent() {
+        wire();
+    }
 
     @Override
     public void setVoltage(boolean voltage) {
         this.voltage = voltage;
+        this.wire();
     }
 
     @Override
@@ -27,6 +37,7 @@ abstract class BasicComponent implements Configurable {
     @Override
     public void setInput(boolean input) {
         this.input = input;
+        this.wire();
     }
 
     @Override
@@ -36,12 +47,13 @@ abstract class BasicComponent implements Configurable {
 
     @Override
     public boolean getOutput() {
-        setOutput();
+        /*setOutput();*/
         return this.output;
     }
 
-//    this method implements the behavior of a particular component
-//    this is how we are defining how a particular component should be wired
-    abstract void setOutput();
+    @Override
+    public void setOutput(boolean output) {
+        this.output = output;
+    }
 
 }

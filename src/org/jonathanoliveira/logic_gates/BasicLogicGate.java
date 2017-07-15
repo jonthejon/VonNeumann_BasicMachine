@@ -9,7 +9,7 @@ import org.jonathanoliveira.basic_components.Inverter;
  * In here you'll find all the common behavior of the logic gates.
  */
 
-abstract class BasicLogicGate implements Inputable {
+public abstract class BasicLogicGate implements Inputable {
 
     // private field to hold the components that make up this gate
     // Configurable array with the size set by the constructor
