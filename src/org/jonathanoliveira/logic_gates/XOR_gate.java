@@ -1,5 +1,9 @@
 package org.jonathanoliveira.logic_gates;
 
+import org.jonathanoliveira.utilities.Binary;
+
+import java.util.Arrays;
+
 /**
  * The XOR gate is a more complex gate than the other ones created.
  * In order to create it, we must use other gates instead of just relays.
@@ -25,8 +29,10 @@ package org.jonathanoliveira.logic_gates;
  *
  */
 
-public class XOR_gate implements Inputable {
+public class XOR_gate {
 
+//    field to hold the inputs of this gate
+    private boolean[] inputs;
     // field to hold the output of this gate
     private boolean output;
     // OR gate that is a component of this XOR gate
@@ -44,43 +50,55 @@ public class XOR_gate implements Inputable {
         nand_gate = new NAND_Gate();
         // initiate the 2-input AND gate
         and_gate = new AND_Gate();
+
+//        creating the inputs array with the proper size of inputs
+        this.inputs = new boolean[getNumInputs()];
+//        initiating the inputs array with default values
+        Arrays.fill(this.inputs, Binary.NO_VOLTAGE.getValue());
+//        calling the wire method so we can set the output of this gate
+        this.wire();
     }
 
-    @Override
     public int getNumInputs() {
         // returns the number of inputs of any one of these gates.
         return or_gate.getNumInputs();
     }
 
-    @Override
     public void setInputs(boolean[] inputs) {
 // check to see if the number of inputs is different then the accepted number (2)
         if (inputs.length != getNumInputs()) {
             // if there is an invalid number of components, an exception must be thrown
             throw new IllegalArgumentException();
         } else {
-            // call wireAndRunGates() with the inputs as arguments
-            wireAndRunGates(inputs);
+//            setting the new values if inputs
+            this.inputs = inputs;
+//            calling wire method so the output of this gate can be recalculated after the new inputs have been set
+            this.wire();
         }
     }
 
-    @Override
+    public boolean[] getInputs() {
+        return this.inputs;
+    }
+
+    public void setOutput(boolean output) {
+        this.output = output;
+    }
+
     public boolean getOutput() {
         // returns the value of the output
         return this.output;
     }
 
-// method that sets the inputs of the inner gates and calculate the output
-    private void wireAndRunGates(boolean[] inputs) {
-
+    public void wire() {
         // boolean array that will hold the outputs of the OR and NAND gate
         boolean[] andGateInputs = new boolean[2];
         // set the inputs of the OR gate
-        or_gate.setInputs(inputs);
+        or_gate.setInputs(getInputs());
         // save the output of the OR gate
         andGateInputs[0] = or_gate.getOutput();
         // set the inputs of the NAND gate
-        nand_gate.setInputs(inputs);
+        nand_gate.setInputs(getInputs());
         // save the output of the NAND gate
         andGateInputs[1] = nand_gate.getOutput();
         // set the inputs of the AND gate
@@ -88,5 +106,4 @@ public class XOR_gate implements Inputable {
         // set the XOR output equals to the output of the AND gate
         this.output = and_gate.getOutput();
     }
-
 }

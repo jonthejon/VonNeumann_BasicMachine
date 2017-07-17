@@ -16,7 +16,9 @@ package org.jonathanoliveira.logic_gates;
 *
 * */
 
-public class OR_Gate extends ParallelWired {
+import org.jonathanoliveira.utilities.Welder;
+
+public class OR_Gate extends BasicLogicGate {
 
     public OR_Gate() {
         // sending to the constructor the proper component type that we want to use in an AND gate
@@ -28,4 +30,9 @@ public class OR_Gate extends ParallelWired {
         super(ComponentType.RELAY, numInputs);
     }
 
+    @Override
+    public void wire() {
+//        calling the Welder method that handles parallel wiring of simple gates
+        Welder.parallelWiring(this);
+    }
 }

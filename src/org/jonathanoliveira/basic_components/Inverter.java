@@ -1,6 +1,6 @@
 package org.jonathanoliveira.basic_components;
 
-import org.jonathanoliveira.utilities.Binary;
+import org.jonathanoliveira.utilities.Welder;
 
 /**
  * Just like a Relay, an Inverter is a basic Component.
@@ -19,12 +19,7 @@ public class Inverter extends BasicComponent {
 
     @Override
     public void wire() {
-//      IF input is true, then output must have no voltage
-        if (getInput()) {
-            this.setOutput(Binary.NO_VOLTAGE.getValue());
-//      IF input is false, then output must be equal to voltage
-        } else {
-            this.setOutput(getVoltage());
-        }
+//        calling the proper Welder method to handle the wiring of this component
+        Welder.wireInverter(this);
     }
 }

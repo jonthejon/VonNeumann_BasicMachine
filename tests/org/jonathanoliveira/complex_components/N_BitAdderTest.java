@@ -6,6 +6,7 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class N_BitAdderTest {
+/*
 
     // test to see if the constructor properly works
     @Test
@@ -63,6 +64,7 @@ public class N_BitAdderTest {
 
     // ------------ calculations with signed binary numbers ------------
 
+*/
 /*
     // test the sum of signed decimals numbers after conversion into signed binary and back
     @Test
@@ -99,8 +101,10 @@ public class N_BitAdderTest {
         int dec_result = converter.convert_signed(converter.convertFromBooleans(adder.getResult()));
         assertEquals(10, dec_result);
     }
-*/
+*//*
 
+
+*/
 
 }
 

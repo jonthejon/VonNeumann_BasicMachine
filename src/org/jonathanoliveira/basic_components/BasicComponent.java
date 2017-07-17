@@ -9,7 +9,7 @@ package org.jonathanoliveira.basic_components;
 
 import org.jonathanoliveira.utilities.Binary;
 
-abstract class BasicComponent implements Configurable {
+public abstract class BasicComponent implements Configurable {
 
 //    the default value of input is true, unless else defined by a Logic gate.
     private boolean input = Binary.VOLTAGE.getValue();
@@ -47,7 +47,6 @@ abstract class BasicComponent implements Configurable {
 
     @Override
     public boolean getOutput() {
-        /*setOutput();*/
         return this.output;
     }
 

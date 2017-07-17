@@ -16,7 +16,9 @@ package org.jonathanoliveira.logic_gates;
 *
 * */
 
-public class AND_Gate extends LinearWired {
+import org.jonathanoliveira.utilities.Welder;
+
+public class AND_Gate extends BasicLogicGate {
 
     public AND_Gate() {
         // sending to the constructor the proper component type that we want to use in an AND gate
@@ -28,4 +30,9 @@ public class AND_Gate extends LinearWired {
         super(ComponentType.RELAY, numInputs);
     }
 
+    @Override
+    public void wire() {
+//        calling the Welder method that handles linear wiring of simple gates
+        Welder.linearWiring(this);
+    }
 }

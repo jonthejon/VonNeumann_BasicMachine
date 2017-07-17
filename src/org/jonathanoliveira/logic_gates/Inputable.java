@@ -16,10 +16,13 @@ public interface Inputable {
 //    returns the number of inputs this logic gate has
     int getNumInputs();
 
-//    handles the inputs sent to this logic gate
-    void setInputs(boolean[] inputs);
+//    getter method to check the inputs of the component
+    boolean[] getInputs();
 
-//    getter method to check the output of the component
+//    getter and setter method to check the output of the component
     boolean getOutput();
+    void setOutput(boolean output);
 
+//    method responsible for wiring the components one to each other and properly setting the output given the inputs
+    void wire();
 }

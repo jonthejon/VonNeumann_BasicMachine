@@ -16,7 +16,9 @@ package org.jonathanoliveira.logic_gates;
 *
 * */
 
-class NOR_Gate extends LinearWired {
+import org.jonathanoliveira.utilities.Welder;
+
+class NOR_Gate extends BasicLogicGate {
 
     NOR_Gate() {
         // sending to the constructor the proper component (inverter) type that we want to use in an AND gate
@@ -26,5 +28,11 @@ class NOR_Gate extends LinearWired {
     NOR_Gate(int numInputs) {
         // sending the superclass constructor the component type that we want (inverter) and the number of buffers we want
         super(ComponentType.INVERTER, numInputs);
+    }
+
+    @Override
+    public void wire() {
+//        calling the Welder method that handles linear wiring of simple gates
+        Welder.linearWiring(this);
     }
 }

@@ -3,6 +3,9 @@ package org.jonathanoliveira.logic_gates;
 import org.jonathanoliveira.basic_components.Relay;
 import org.jonathanoliveira.basic_components.Configurable;
 import org.jonathanoliveira.basic_components.Inverter;
+import org.jonathanoliveira.utilities.Binary;
+
+import java.util.Arrays;
 
 /**
  * This is the superclass for all Logic Gates.
@@ -13,9 +16,11 @@ public abstract class BasicLogicGate implements Inputable {
 
     // private field to hold the components that make up this gate
     // Configurable array with the size set by the constructor
-    Configurable[] components;
+    public Configurable[] components;
+//    private field to hold the inputs values of this logic gate
+    private boolean[] inputs;
     // private field to hold the output of this gate
-    boolean output;
+    private boolean output;
 
 //    this enum holds all the possible types of basic components (relays) used to create logic gates
     enum ComponentType { RELAY, INVERTER }
@@ -25,6 +30,11 @@ public abstract class BasicLogicGate implements Inputable {
     BasicLogicGate(ComponentType componentType) {
         //    initiate the field array to fit 2 relays
         components = new Configurable[2];
+//        setting the inputs array to have the same number of inputs of this gate
+        this.inputs = new boolean[getNumInputs()];
+//        filling the input arrays initially to have all false inputs
+        Arrays.fill(this.inputs, Binary.NO_VOLTAGE.getValue());
+
         // switch statement to handle the proper component selected
         switch (componentType) {
             // gate must be constructed using relays, instead of inverters.
@@ -44,6 +54,8 @@ public abstract class BasicLogicGate implements Inputable {
                 break;
 
         }
+//        calling the wire method so it can preset this gate with the initial values of the inputs
+        this.wire();
     }
 
     // constructor (3 and over input AND gate)
@@ -53,6 +65,12 @@ public abstract class BasicLogicGate implements Inputable {
         if (numInputs > 2) {
             //    initiate the field array
             components = new Configurable[numInputs];
+
+//        setting the inputs array to have the same number of inputs of this gate
+            this.inputs = new boolean[getNumInputs()];
+//        filling the input arrays initially to have all false inputs
+            Arrays.fill(this.inputs, Binary.NO_VOLTAGE.getValue());
+
             //    loop for the number of requested relays
             for (int i = 0; i < numInputs; i++) {
                 // initiate a new relay and put the relay inside the array
@@ -72,6 +90,8 @@ public abstract class BasicLogicGate implements Inputable {
         } else {
             throw new IllegalArgumentException();
         }
+//        calling the wire method so it can preset this gate with the initial values of the inputs
+        this.wire();
     }
 
     // method that returns the number of inputs necessary to operate this gate
@@ -82,14 +102,21 @@ public abstract class BasicLogicGate implements Inputable {
     }
 
     // method that receives an array of inputs and set the relays with the proper values
-    @Override
     public void setInputs(boolean[] inputs) {
         // check to see if the number of inputs is different then the supported
         // if not, throw an exception
         if (inputs.length != getNumInputs()) throw new IllegalArgumentException();
 
+//        setting the input values with the given values
+        this.inputs = inputs;
         // after checking, call a method (array of inputs) that will wire all components with inputs and voltages in order to produce the gate behavior
-        setAndWireComponents(inputs);
+        this.wire();
+        /*setAndWireComponents(inputs);*/
+    }
+
+    @Override
+    public boolean[] getInputs() {
+        return this.inputs;
     }
 
     // returns the value of the output
@@ -99,12 +126,9 @@ public abstract class BasicLogicGate implements Inputable {
     }
 
     // sets the value of the output. Can only be called from within this class.
-    void setOutput(boolean output) {
+    @Override
+    public void setOutput(boolean output) {
         this.output = output;
     }
-
-    // method that wires all components with inputs and voltages in order to produce the gate behavior
-    // each different logic gate will have a unique implementation of this method
-    abstract void setAndWireComponents(boolean[] inputs);
 
 }

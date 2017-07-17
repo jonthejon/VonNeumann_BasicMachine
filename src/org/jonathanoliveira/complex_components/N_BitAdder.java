@@ -13,6 +13,7 @@ import java.util.ArrayList;
  */
 
 public class N_BitAdder {
+/*
 
     // Full adders that each correspond to a bit
     private FullAdder[] adders;
@@ -75,4 +76,5 @@ public class N_BitAdder {
     boolean[] getResult() {
         return this.sum_result;
     }
+*/
 }

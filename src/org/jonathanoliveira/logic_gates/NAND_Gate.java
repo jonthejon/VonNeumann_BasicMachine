@@ -16,7 +16,9 @@ package org.jonathanoliveira.logic_gates;
 *
 * */
 
-class NAND_Gate extends ParallelWired {
+import org.jonathanoliveira.utilities.Welder;
+
+class NAND_Gate extends BasicLogicGate {
 
     NAND_Gate() {
         // sending to the constructor the proper component (inverter) type that we want to use in an NAND gate
@@ -28,4 +30,9 @@ class NAND_Gate extends ParallelWired {
         super(ComponentType.INVERTER, numInputs);
     }
 
+    @Override
+    public void wire() {
+//        calling the Welder method that handles parallel wiring of simple gates
+        Welder.parallelWiring(this);
+    }
 }

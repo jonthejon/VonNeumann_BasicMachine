@@ -1,6 +1,7 @@
 package org.jonathanoliveira.basic_components;
 
 import org.jonathanoliveira.utilities.Binary;
+import org.jonathanoliveira.utilities.Welder;
 
 /**
  * All relays are based in boolean (true/false) values that correspond to the existence of voltage.
@@ -27,12 +28,7 @@ public class Relay extends BasicComponent {
      */
     @Override
     public void wire() {
-//      IF input is true, then output must be equal to voltage
-        if (getInput()) {
-            this.setOutput(getVoltage());
-//      IF input is false, then output must have no voltage
-        } else {
-            this.setOutput(Binary.NO_VOLTAGE.getValue());
-        }
+//        calling the proper Welder method to handle the wiring of this component
+        Welder.wireRelay(this);
     }
 }
