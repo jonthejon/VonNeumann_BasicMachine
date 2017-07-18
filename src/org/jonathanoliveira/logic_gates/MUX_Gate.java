@@ -66,7 +66,7 @@ public class MUX_Gate {
      * The number of components is the width of the channels.
      * @return the width of bits of the channels of this MUX gate
      * */
-    public int getNumInputs() {
+    public int getDataWidth() {
         // returns the number of inputs of any one of these gates.
         return and_gates_A.length;
     }
@@ -79,7 +79,7 @@ public class MUX_Gate {
      * */
     public void setGate(boolean[] inputA, boolean[] inputB, boolean select) {
 //        checking to see if the size of the inputs is valid
-        if (inputA.length != inputB.length || inputA.length != this.getNumInputs()) throw new IllegalArgumentException();
+        if (inputA.length != inputB.length || inputA.length != this.getDataWidth()) throw new IllegalArgumentException();
 //        setting the IVs with the proper values
         this.inputA = inputA;
         this.inputB = inputB;
@@ -95,7 +95,7 @@ public class MUX_Gate {
      * */
     private void setOutput(boolean[] output) {
 //        checking to see if the size of the output array is valid
-        if (output.length != this.getNumInputs()) throw new IllegalArgumentException();
+        if (output.length != this.getDataWidth()) throw new IllegalArgumentException();
         this.output = output;
     }
 
@@ -113,11 +113,11 @@ public class MUX_Gate {
      * */
     public void wire() {
 //        initiates a new output array to store momentarily the output result of this MUX gate
-        boolean[] output = new boolean[this.getNumInputs()];
+        boolean[] output = new boolean[this.getDataWidth()];
 //        sending the select signal into the inverter
         this.inverter.setInput(this.select);
 //        looping through all the inputs values
-        for (int i = 0; i < getNumInputs(); i++) {
+        for (int i = 0; i < getDataWidth(); i++) {
 //        setting the inputs for the first AND Gate to be the data of channel A and the output of the inverter
             this.and_gates_A[i].setInputs(new boolean[]{this.inputA[i], this.inverter.getOutput()});
 //        setting the inputs for the second AND Gate to be the data of channel B and the select value

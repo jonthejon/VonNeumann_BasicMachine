@@ -9,7 +9,7 @@ public class MUX_GateTest {
     @Test
     public void create_16bit_MUX_Gate() throws Exception {
         MUX_Gate muxGate = new MUX_Gate(16);
-        int channelWidth = muxGate.getNumInputs();
+        int channelWidth = muxGate.getDataWidth();
         assertTrue(channelWidth == 16);
     }
 
