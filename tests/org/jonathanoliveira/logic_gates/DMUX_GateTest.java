@@ -7,7 +7,7 @@ import static org.junit.Assert.*;
 public class DMUX_GateTest {
 
     @Test
-    public void create_16bit_DMUX_Gate() throws Exception {
+    public void create_DMUX_Gate() throws Exception {
         DMUX_Gate dmuxGate = new DMUX_Gate();
         int numChannels = dmuxGate.getNumChannels();
         assertTrue(numChannels == 2);
