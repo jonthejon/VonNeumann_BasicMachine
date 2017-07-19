@@ -5,7 +5,6 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class DMUX_4Way_GateTest {
-/*
     @Test
     public void create_DMUX_4Way_Gate() throws Exception {
         DMUX_4Way_Gate dmux4WayGate = new DMUX_4Way_Gate();
@@ -155,5 +154,5 @@ public class DMUX_4Way_GateTest {
         assertTrue(!channel_b);
         assertTrue(!channel_c);
         assertTrue(!channel_a);
-    }*/
+    }
 }
