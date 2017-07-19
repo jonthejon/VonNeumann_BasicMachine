@@ -1,9 +1,6 @@
 package org.jonathanoliveira.logic_gates;
 
-import org.jonathanoliveira.basic_components.Inverter;
 import org.jonathanoliveira.complex_components.Selector_4_To_1;
-
-import java.util.Arrays;
 
 /**
  * DMux 4way lets you select what channel you want the single data input to appear.
