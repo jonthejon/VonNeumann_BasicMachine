@@ -1,6 +1,7 @@
 package org.jonathanoliveira.logic_gates;
 
 import org.jonathanoliveira.basic_components.Inverter;
+import org.jonathanoliveira.complex_components.Selector_4_To_1;
 
 import java.util.Arrays;
 
@@ -19,13 +20,7 @@ import java.util.Arrays;
 
 public class MUX_4Way_Gate {
 
-    private XOR_gate selXOR = new XOR_gate();
-    private AND_Gate selAND_1 = new AND_Gate();
-    private AND_Gate selAND_2 = new AND_Gate();
-    private AND_Gate selAND_3 = new AND_Gate();
-    private AND_Gate selAND_4 = new AND_Gate();
-    private Inverter selInverter_1 = new Inverter();
-    private Inverter selInverter_2 = new Inverter();
+    private Selector_4_To_1 selector;
 
     private AND_Gate[][] andGates;
     private OR_Gate[][] orGates;
@@ -45,6 +40,7 @@ public class MUX_4Way_Gate {
         this.inputs = new boolean[4][dataWidth];
         this.select = new boolean[2];
         this.output = new boolean[dataWidth];
+        this.selector = new Selector_4_To_1();
     }
 
     /**
@@ -105,19 +101,9 @@ public class MUX_4Way_Gate {
      * Method responsible for wiring all the underlying gates of this MUX gate and updating the output
      * */
     public void wire() {
-        selXOR.setInputs(new boolean[]{select[1], select[0]});
-        selAND_1.setInputs(new boolean[]{select[0], selXOR.getOutput()});
-        selAND_2.setInputs(new boolean[]{select[1], selXOR.getOutput()});
-        selAND_3.setInputs(new boolean[]{select[1], select[0]});
-        selInverter_1.setInput(selAND_3.getOutput());
-        selInverter_2.setInput(selXOR.getOutput());
-        selAND_4.setInputs(new boolean[]{selInverter_1.getOutput(), selInverter_2.getOutput()});
 
-        boolean OaSel = selAND_4.getOutput();
-        boolean ObSel = selAND_2.getOutput();
-        boolean OcSel = selAND_1.getOutput();
-        boolean OdSel = selAND_3.getOutput();
-
+        this.selector.setComponent(this.select);
+        boolean[] selections = this.selector.getOutput();
         boolean and1Result;
         boolean and2Result;
         boolean and3Result;
@@ -128,13 +114,13 @@ public class MUX_4Way_Gate {
 
         boolean[] output = new boolean[getDataWidth()];
         for (int i = 0; i < getDataWidth(); i++) {
-            andGates[i][0].setInputs(new boolean[]{inputs[0][i], OaSel}); // INPUT A
+            andGates[i][0].setInputs(new boolean[]{inputs[0][i], selections[0]}); // INPUT A
             and1Result = andGates[i][0].getOutput();
-            andGates[i][1].setInputs(new boolean[]{inputs[1][i], ObSel}); // false
+            andGates[i][1].setInputs(new boolean[]{inputs[1][i], selections[1]}); // false
             and2Result = andGates[i][1].getOutput();
-            andGates[i][2].setInputs(new boolean[]{inputs[2][i], OcSel}); // false
+            andGates[i][2].setInputs(new boolean[]{inputs[2][i], selections[2]}); // false
             and3Result = andGates[i][2].getOutput();
-            andGates[i][3].setInputs(new boolean[]{inputs[3][i], OdSel}); // false
+            andGates[i][3].setInputs(new boolean[]{inputs[3][i], selections[3]}); // false
             and4Result = andGates[i][3].getOutput();
             orGates[i][0].setInputs(new boolean[]{and1Result, and2Result});
             or1Result = orGates[i][0].getOutput();

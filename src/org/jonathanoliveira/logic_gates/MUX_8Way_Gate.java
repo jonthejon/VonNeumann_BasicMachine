@@ -1,6 +1,7 @@
 package org.jonathanoliveira.logic_gates;
 
 import org.jonathanoliveira.basic_components.Inverter;
+import org.jonathanoliveira.complex_components.Selector_8_To_1;
 
 import java.util.Arrays;
 
@@ -28,22 +29,7 @@ import java.util.Arrays;
 
 public class MUX_8Way_Gate {
 
-    private XOR_gate selXOR = new XOR_gate();
-    private AND_Gate selAND_1 = new AND_Gate();
-    private AND_Gate selAND_2 = new AND_Gate();
-    private AND_Gate selAND_3 = new AND_Gate();
-    private AND_Gate selAND_4 = new AND_Gate();
-    private AND_Gate selAND_5 = new AND_Gate();
-    private AND_Gate selAND_6 = new AND_Gate();
-    private AND_Gate selAND_7 = new AND_Gate();
-    private AND_Gate selAND_8 = new AND_Gate();
-    private AND_Gate selAND_9 = new AND_Gate();
-    private AND_Gate selAND_10 = new AND_Gate();
-    private AND_Gate selAND_11 = new AND_Gate();
-    private AND_Gate selAND_12 = new AND_Gate();
-    private Inverter selInverter_1 = new Inverter();
-    private Inverter selInverter_2 = new Inverter();
-    private Inverter selInverter_3 = new Inverter();
+    private Selector_8_To_1 selector;
 
     private AND_Gate[][] andGates;
     private OR_Gate[][] orGates;
@@ -63,6 +49,7 @@ public class MUX_8Way_Gate {
         this.inputs = new boolean[8][dataWidth];
         this.select = new boolean[3];
         this.output = new boolean[dataWidth];
+        this.selector = new Selector_8_To_1();
     }
 
     /**
@@ -123,37 +110,9 @@ public class MUX_8Way_Gate {
      * Method responsible for wiring all the underlying gates of this MUX gate and updating the output
      * */
     public void wire() {
-        selXOR.setInputs(new boolean[]{select[1], select[2]});// false
-        selAND_1.setInputs(new boolean[]{select[2], selXOR.getOutput()});// false
-        selAND_2.setInputs(new boolean[]{select[1], selXOR.getOutput()});// false
-        selAND_3.setInputs(new boolean[]{select[1], select[2]});// true
-        selInverter_1.setInput(selAND_3.getOutput());// false
-        selInverter_2.setInput(selXOR.getOutput());// true
-        selAND_4.setInputs(new boolean[]{selInverter_1.getOutput(), selInverter_2.getOutput()});// false
 
-        boolean OaSel = selAND_4.getOutput();// false
-        boolean ObSel = selAND_1.getOutput();// false
-        boolean OcSel = selAND_2.getOutput();// false
-        boolean OdSel = selAND_3.getOutput();// true
-
-        selInverter_3.setInput(select[0]);// false
-        selAND_5.setInputs(new boolean[]{OaSel, selInverter_3.getOutput()});// false
-        selAND_6.setInputs(new boolean[]{ObSel, selInverter_3.getOutput()});// false
-        selAND_7.setInputs(new boolean[]{OcSel, selInverter_3.getOutput()});// false
-        selAND_8.setInputs(new boolean[]{OdSel, selInverter_3.getOutput()});// false
-        selAND_9.setInputs(new boolean[]{OaSel, select[0]});// false
-        selAND_10.setInputs(new boolean[]{ObSel, select[0]});// true
-        selAND_11.setInputs(new boolean[]{OcSel, select[0]});// false
-        selAND_12.setInputs(new boolean[]{OdSel, select[0]});// true
-
-        boolean OAASel = selAND_5.getOutput();// false
-        boolean OBBSel = selAND_6.getOutput();// false
-        boolean OCCSel = selAND_7.getOutput();// false
-        boolean ODDSel = selAND_8.getOutput();// false
-        boolean OEESel = selAND_9.getOutput();// false
-        boolean OFFSel = selAND_10.getOutput();// false
-        boolean OGGSel = selAND_11.getOutput();// false
-        boolean OHHSel = selAND_12.getOutput();// true
+        this.selector.setComponent(this.select);
+        boolean[] selections = this.selector.getOutput();
 
         boolean and1Result;
         boolean and2Result;
@@ -172,21 +131,21 @@ public class MUX_8Way_Gate {
 
         boolean[] output = new boolean[getDataWidth()];
         for (int i = 0; i < getDataWidth(); i++) {
-            andGates[i][0].setInputs(new boolean[]{inputs[0][i], OAASel}); // INPUT A
+            andGates[i][0].setInputs(new boolean[]{inputs[0][i], selections[0]}); // INPUT A
             and1Result = andGates[i][0].getOutput();
-            andGates[i][1].setInputs(new boolean[]{inputs[1][i], OBBSel}); // false
+            andGates[i][1].setInputs(new boolean[]{inputs[1][i], selections[1]}); // false
             and2Result = andGates[i][1].getOutput();
-            andGates[i][2].setInputs(new boolean[]{inputs[2][i], OCCSel}); // false
+            andGates[i][2].setInputs(new boolean[]{inputs[2][i], selections[2]}); // false
             and3Result = andGates[i][2].getOutput();
-            andGates[i][3].setInputs(new boolean[]{inputs[3][i], ODDSel}); // false
+            andGates[i][3].setInputs(new boolean[]{inputs[3][i], selections[3]}); // false
             and4Result = andGates[i][3].getOutput();
-            andGates[i][4].setInputs(new boolean[]{inputs[4][i], OEESel}); // false
+            andGates[i][4].setInputs(new boolean[]{inputs[4][i], selections[4]}); // false
             and5Result = andGates[i][4].getOutput();
-            andGates[i][5].setInputs(new boolean[]{inputs[5][i], OFFSel}); // false
+            andGates[i][5].setInputs(new boolean[]{inputs[5][i], selections[5]}); // false
             and6Result = andGates[i][5].getOutput();
-            andGates[i][6].setInputs(new boolean[]{inputs[6][i], OGGSel}); // false
+            andGates[i][6].setInputs(new boolean[]{inputs[6][i], selections[6]}); // false
             and7Result = andGates[i][6].getOutput();
-            andGates[i][7].setInputs(new boolean[]{inputs[7][i], OHHSel}); // false
+            andGates[i][7].setInputs(new boolean[]{inputs[7][i], selections[7]}); // false
             and8Result = andGates[i][7].getOutput();
 
             orGates[i][0].setInputs(new boolean[]{and1Result, and2Result});
