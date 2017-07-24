@@ -9,9 +9,8 @@ import java.util.Arrays;
 
 public class Converter {
 
-    // todo: (2) refactor the name of this method to make it clear that it handles only unsigned binary numbers
     // binary to decimal method
-    public int convert(int[] binary_number) {
+    public int convert_unsigned(int[] binary_number) {
         // int variable that will store the decimal number
         int decimal_number = 0;
         // loop to calculate each bit of the binary number
@@ -23,16 +22,20 @@ public class Converter {
         return decimal_number;
     }
 
-    // todo: (3) define overloaded convert() method that converts signed binary numbers to decimal numbers. Takes an int[] binary number
-    // it may take positive and negative binary numbers
-    /*
-    * invert all bits, add 1 (to find the respective positive integer)
-    * invert the decimal
-    * */
+    public int convert_signed(int[] binary_number) {
+        // IF most significant bit is 0, call unsigned method and return the result
+        if (binary_number[0] == 0) return convert_unsigned(binary_number);
+        // implement for loop to invert all bits of the array
+        for (int i = 0; i < binary_number.length; i++) {
+            binary_number[i] = (binary_number[i] == 0) ? 1 : 0;
+        }
+        int[] added_bin = add_1(binary_number);
+        int inverted_result = convert_unsigned(added_bin);
+        return (inverted_result * (-1));
+    }
 
-    // todo: (2) refactor the name of this method to make it clear that it handles only unsigned binary numbers
     // decimal to binary method
-    public int[] convert(int decimal_number) {
+    public int[] convert_unsigned(int decimal_number) {
         // verify if the decimal number is not a negative number.
         // this is because for now our adder will only handle positive numbers.
         if (decimal_number < 0) throw new IllegalArgumentException();
@@ -62,68 +65,72 @@ public class Converter {
         return binary;
     }
 
-    public int[] convert(int decimal_number, int bit_size) {
+    // decimal to binary method
+    public int[] convert_unsigned(int decimal_number, int bit_size) {
         // verify if the decimal number is not a negative number.
         // this is because for now our adder will only handle positive numbers.
-        if (decimal_number < 0 || bit_size <= 0 || decimal_number >= powerOfTwo(bit_size)) throw new IllegalArgumentException();
+        if (decimal_number < 0 || decimal_number >= powerOfTwo(bit_size)) throw new IllegalArgumentException();
 
+        // number that will specify the bit size of the binary number
+        int bits_needed = 0;
+        // loop until we define the size of the binary number
+        while (true) {
+            if (decimal_number >= powerOfTwo(bits_needed)) {
+                bits_needed++;
+            } else break;
+        }
         // initialize an array with the calculated size
-        int[] binary = new int[bit_size];
+//        int[] binary = new int[bit_size];
+        ArrayList<Integer> binary_arr = new ArrayList<>();
         // int variable to hold the remainders of the divisions used in the calculation
         int remainders = decimal_number;
         // loop to populate the binary array
-        for (int i = 0; i < binary.length; i++) {
+        for (int i = 0; i < bits_needed; i++) {
             // defines the divisor we will use
-            // 0100
-            //7
-            int divisor = powerOfTwo(binary.length - 1 - i);
+            int divisor = powerOfTwo(bits_needed - 1 - i);
             // sets the selected bit to either 1 or 0, depending of this division
-            binary[i] = remainders / divisor;
+            binary_arr.add(remainders / divisor);
             // reset the remainder variable so we can continue our calculations with the next bits
             remainders = remainders % divisor;
+        }
+        while (binary_arr.size() < bit_size) {
+            binary_arr.add(0,0);
+        }
+
+        int[] binary = new int[bit_size];
+        for (int i = 0; i < binary_arr.size(); i++) {
+            binary[i] = binary_arr.get(i);
         }
         // returns the final array of bits
         return binary;
     }
 
-    // todo: (1) define overloaded convert() method that will take an int decimal and an int bit-size
-
-    // todo: (3) define overloaded convert() method that converts decimal numbers to signed binary numbers. Takes an int decimal number and an int bit_size.
-    // it may take positive and negative integers
-
     public int[] convert_signed(int decimal_number, int bit_size) {
-
-        int lower_bound = powerOfTwo(bit_size-1) * (-1);
-//        int upper_bound = powerOfTwo(bit_size-1) * -1;
-        int upper_bound = lower_bound * (-1) - 1;
-        if (bit_size <= 0 || decimal_number > upper_bound || decimal_number < lower_bound) throw new IllegalArgumentException();
+        int lower_bound = powerOfTwo(bit_size - 1) * (-1);
+        int upper_bound = powerOfTwo(bit_size - 1) - 1;
+        if (decimal_number < lower_bound || decimal_number > upper_bound) throw new IllegalArgumentException();
         int[] inverted_binary;
         if (decimal_number >= 0) {
-            return convert(decimal_number,bit_size);
+            return convert_unsigned(decimal_number,bit_size);
         } else {
-            inverted_binary = convert(decimal_number*(-1),bit_size);
+            inverted_binary = convert_unsigned((decimal_number * (-1)), bit_size);
         }
-        for (int i = 0; i<inverted_binary.length ; i++) {
-            inverted_binary[i] = (inverted_binary[i] == 1) ? 0 : 1;
+        for (int i = 0; i < inverted_binary.length; i++) {
+            inverted_binary[i] = (inverted_binary[i] == 0) ? 1 : 0;
         }
         return add_1(inverted_binary);
-
     }
 
     private int[] add_1(int[] binary) {
+        int[] result = new int[binary.length];
         int carry = 1;
-        for (int i = binary.length - 1; i>=0 ; i--) {
-            binary[i] = ((binary[i] + carry) == 1) ? 1 : 0;
-            carry = ((binary[i] + carry) == 2) ? 1 : 0;
+        for (int i = binary.length - 1; i >= 0; i--) {
+            result[i] = (binary[i] + carry == 1) ? 1 : 0;
+            carry = (binary[i] + carry > 1) ? 1 : 0;
         }
-        return binary;
+        return result;
     }
 
-
-    /*
-    * what is -2 in a 3-bit signed binary?
-    * get the +2 in binary, invert all bits and add 1
-    * */
 
     // method power of 2 calculator
     int powerOfTwo(int power) {

@@ -31,7 +31,7 @@ import org.jonathanoliveira.logic_gates.XOR_gate;
  * This means that we can replicate the sum of binary numbers using these gates.
  */
 
-class HalfAdder {
+public class HalfAdder {
 
     // this is the output of the sum, made by the XOR gate
     private boolean sum_out;
@@ -41,6 +41,7 @@ class HalfAdder {
     private XOR_gate xor_gate;
     // private AND gate that is part of this Half-Adder
     private AND_Gate and_gate;
+    private boolean[] inputs;
 
     // nor-arg constructor that will initialize the gates
     HalfAdder() {
@@ -53,15 +54,8 @@ class HalfAdder {
     // method that sets the inputs of the half adder. They will always be two.
     void setInputs(boolean inA, boolean inB) {
         // create a boolean array and initiate it with the adder inputs
-        boolean[] inputs = new boolean[] {inA, inB};
-        // set the inputs of the XOR gates
-        xor_gate.setInputs(inputs);
-        // update the sum output with the XOR output
-        sum_out = xor_gate.getOutput();
-        // set the inputs of the AND gates
-        and_gate.setInputs(inputs);
-        // update the carry out with the AND output
-        carry_out = and_gate.getOutput();
+        this.inputs = new boolean[] {inA, inB};
+        this.wire();
     }
 
     // method that returns the sum output
@@ -72,6 +66,17 @@ class HalfAdder {
     // method that returns the carry out
     boolean getCarryOut() {
         return this.carry_out;
+    }
+
+    public void wire() {
+        // set the inputs of the XOR gates
+        xor_gate.setInputs(inputs);
+        // update the sum output with the XOR output
+        sum_out = xor_gate.getOutput();
+        // set the inputs of the AND gates
+        and_gate.setInputs(inputs);
+        // update the carry out with the AND output
+        carry_out = and_gate.getOutput();
     }
 
 }

@@ -50,6 +50,9 @@ public class FullAdder {
     private HalfAdder second_adder;
     // private OR gate that is the final part of this Full Adder
     private OR_Gate or_gate;
+    private boolean inCarry;
+    private boolean inA;
+    private boolean inB;
 
     // nor-arg constructor that will initialize the Half Adders and the OR gate
     FullAdder() {
@@ -63,16 +66,10 @@ public class FullAdder {
 
     // method that sets the inputs of the HalfAdders with the inputs and the carry_in.
     void setInputs(boolean inCarry, boolean inA, boolean inB) {
-        // set the inputs of the first HalfAdder
-        first_adder.setInputs(inA, inB);
-        // set the inputs of the second HalfAdder with the carry_in and the sum_out of the first adder
-        second_adder.setInputs(inCarry, first_adder.getSumOut());
-        // update the sum output with the second adder sum_out
-        sum_out = second_adder.getSumOut();
-        // set the inputs of the OR gate with the carry_out of both adders
-        or_gate.setInputs(new boolean[] {first_adder.getCarryOut(), second_adder.getCarryOut()});
-        // update the carry out with the OR output
-        carry_out = or_gate.getOutput();
+        this.inCarry = inCarry;
+        this.inA = inA;
+        this.inB = inB;
+        this.wire();
     }
 
     // method that returns the sum output
@@ -83,6 +80,19 @@ public class FullAdder {
     // method that returns the carry out
     boolean getCarryOut() {
         return this.carry_out;
+    }
+
+    public void wire() {
+        // set the inputs of the first HalfAdder
+        first_adder.setInputs(inA, inB);
+        // set the inputs of the second HalfAdder with the carry_in and the sum_out of the first adder
+        second_adder.setInputs(inCarry, first_adder.getSumOut());
+        // update the sum output with the second adder sum_out
+        sum_out = second_adder.getSumOut();
+        // set the inputs of the OR gate with the carry_out of both adders
+        or_gate.setInputs(new boolean[] {first_adder.getCarryOut(), second_adder.getCarryOut()});
+        // update the carry out with the OR output
+        carry_out = or_gate.getOutput();
     }
 
 }
