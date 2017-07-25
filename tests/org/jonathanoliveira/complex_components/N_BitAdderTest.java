@@ -90,6 +90,13 @@ public class N_BitAdderTest {
         Converter converter = new Converter();
         boolean[] inA = converter.convertToBooleans(converter.convert_signed(9,8));
         boolean[] inB = converter.convertToBooleans(converter.convert_signed(-10,8));
+        // 00001001
+        // 11110110 - 11110101 - 00001010
+        // 11111111
+
+        // 00001001
+        // 00001010
+        // 00010011
         N_BitAdder adder = new N_BitAdder(inA.length);
         adder.setInputs(inA, inB);
         int dec_result = converter.convert_signed(converter.convertFromBooleans(adder.getOutput()));

@@ -25,7 +25,7 @@ public class OR_Gate extends BasicLogicGate {
         super(ComponentType.RELAY);
     }
 
-    OR_Gate(int numInputs) {
+    public OR_Gate(int numInputs) {
         // sending the superclass constructor the component type that we want (buffer) and the number of buffers we want
         super(ComponentType.RELAY, numInputs);
     }

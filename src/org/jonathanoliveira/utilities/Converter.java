@@ -139,7 +139,7 @@ public class Converter {
 
     // binary to boolean conversion method
     // this method will be used as an interface between our arrays that represent binary numbers to our arrays of booleans in which the logic gates work on
-    public boolean[] convertToBooleans(int[] binary) {
+    static public boolean[] convertToBooleans(int[] binary) {
         // initiate the boolean array with the same size of the binary array that will be sent as a result
         boolean[] bool_result = new boolean[binary.length];
         // loop inside the binary array
@@ -152,7 +152,7 @@ public class Converter {
 
     // boolean to binary conversion method
     // this method will be used as an interface between our arrays that represent binary numbers to our arrays of booleans in which the logic gates work on
-    public int[] convertFromBooleans(boolean[] booleans) {
+    static public int[] convertFromBooleans(boolean[] booleans) {
         // initiate the int array with the same size of the boolean array that will be sent as a result
         int[] binary = new int[booleans.length];
         // loop inside the boolean array
