@@ -18,14 +18,14 @@ package org.jonathanoliveira.logic_gates;
 
 import org.jonathanoliveira.utilities.Welder;
 
-class NOR_Gate extends BasicLogicGate {
+public class NOR_Gate extends BasicLogicGate {
 
-    NOR_Gate() {
+    public NOR_Gate() {
         // sending to the constructor the proper component (inverter) type that we want to use in an AND gate
         super(ComponentType.INVERTER);
     }
 
-    NOR_Gate(int numInputs) {
+    public NOR_Gate(int numInputs) {
         // sending the superclass constructor the component type that we want (inverter) and the number of buffers we want
         super(ComponentType.INVERTER, numInputs);
     }
