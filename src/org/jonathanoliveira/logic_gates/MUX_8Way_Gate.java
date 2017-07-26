@@ -39,7 +39,7 @@ public class MUX_8Way_Gate {
     private boolean[] output;
 
     public MUX_8Way_Gate(int dataWidth) {
-        if (dataWidth < 1) throw new IllegalArgumentException();
+        if (dataWidth < 0) throw new IllegalArgumentException();
         this.andGates = new AND_Gate[dataWidth][8];
         this.orGates = new OR_Gate[dataWidth][7];
         for (int i = 0; i < dataWidth; i++) {
