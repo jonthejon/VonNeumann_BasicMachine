@@ -5,11 +5,11 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
-public class Register_16BitTest {
+public class Register_NbitTest {
 
     @Test
     public void checkData1_clock_1() throws Exception {
-        Register_16Bit reg = new Register_16Bit();
+        Register_Nbit reg = new Register_Nbit(16);
         reg.write(true);
         reg.data(Converter.convertToBooleans(new int[]{1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0}));
         boolean[] exp = Converter.convertToBooleans(new int[]{1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0});
@@ -21,7 +21,7 @@ public class Register_16BitTest {
 
     @Test
     public void checkData_n_clock_0() throws Exception {
-        Register_16Bit reg = new Register_16Bit();
+        Register_Nbit reg = new Register_Nbit(16);
         boolean[] exp = Converter.convertToBooleans(new int[]{1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0});
         boolean[] exp2 = Converter.convertToBooleans(new int[]{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1});
         reg.write(true);

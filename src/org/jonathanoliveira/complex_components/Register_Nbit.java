@@ -11,7 +11,7 @@ import java.util.Arrays;
  * So the truth table of the 1-bit register maintains but with 16bits
  */
 
-public class Register_16Bit {
+public class Register_Nbit {
 
     private int bitSize;
     private boolean[] data;
@@ -20,8 +20,8 @@ public class Register_16Bit {
 
     private Register_1Bit[] registers;
 
-    public Register_16Bit() {
-        bitSize = 16;
+    public Register_Nbit(int bitSize) {
+        this.bitSize = bitSize;
         registers = new Register_1Bit[bitSize];
         for (int i = 0; i < bitSize; i++) {
             registers[i] = new Register_1Bit();
