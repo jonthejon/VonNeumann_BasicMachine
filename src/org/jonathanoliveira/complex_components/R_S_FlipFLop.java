@@ -2,6 +2,8 @@ package org.jonathanoliveira.complex_components;
 
 import org.jonathanoliveira.logic_gates.NOR_Gate;
 
+import java.util.Random;
+
 /**
  * Implements a classic R-S fLip-fLop.
  *  S | R | Q | !Q
@@ -17,6 +19,7 @@ public class R_S_FlipFLop {
     private boolean reset;
     private boolean Q;
     private boolean Qbar;
+    private double id;
 
     private NOR_Gate setNor;
     private NOR_Gate resetNor;
@@ -30,16 +33,16 @@ public class R_S_FlipFLop {
         resetNor.setInputs(new boolean[]{reset, setNor.getOutput()});
         Q = resetNor.getOutput();
         Qbar = setNor.getOutput();
+        this.id = Math.random();
     }
 
-    public void set(boolean set) {
+    public double getId() {
+        return id;
+    }
+
+    public void inputs(boolean set, boolean reset) {
         if (set && reset) throw new IllegalArgumentException();
         this.set = set;
-        wire();
-    }
-
-    public void reset(boolean reset) {
-        if (set && reset) throw new IllegalArgumentException();
         this.reset = reset;
         wire();
     }
