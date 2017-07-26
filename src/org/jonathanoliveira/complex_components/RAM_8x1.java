@@ -29,7 +29,7 @@ public class RAM_8x1 {
         for (int i = 0; i < numRegisters; i++) {
             this.registers[i] = new Register_1Bit();
         }
-        this.dmux = new DMUX_8Way_Gate();
+        this.dmux = new DMUX_8Way_Gate(1);
         this.mux = new MUX_8Way_Gate(bitSize);
     }
 
@@ -55,7 +55,7 @@ public class RAM_8x1 {
         this.dmux.setGate(this.write, this.address);
         boolean[][] muxInput = new boolean[numRegisters][bitSize];
         for (int r = 0; r < numRegisters; r++) {
-            this.registers[r].write(this.dmux.getOutput()[r]);
+            this.registers[r].write(this.dmux.getOutput()[r][0]);
             this.registers[r].data(dataIn);
             muxInput[r][0] = this.registers[r].Q();
         }

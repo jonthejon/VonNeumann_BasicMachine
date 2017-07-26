@@ -26,12 +26,14 @@ import org.jonathanoliveira.complex_components.Selector_8_To_1;
 
 public class DMUX_8Way_Gate {
 
+    private int dataWidth;
+    private int numChannels;
     private Selector_8_To_1 selector;
 
     //    defining the fields that will hold the inputs, the selection and the output of this gate
     private boolean input;
     private boolean[] select;
-    private boolean[] output;
+    private boolean[][] output;
     // AND gate that is a component of this DMUX gate
 //    private AND_Gate[] and_gates;
     private AND_Gate and_gate_a;
@@ -46,9 +48,11 @@ public class DMUX_8Way_Gate {
     /*    *
          * This is the constructor of the DMUX gate. This gate can only take 1 bit data input and handle only 2 output channels
          * */
-    public DMUX_8Way_Gate() {
+    public DMUX_8Way_Gate(int dataWidth) {
+        this.dataWidth = dataWidth;
+        this.numChannels = 8;
 //        initiating the output array with the proper size
-        this.output = new boolean[8];
+        this.output = new boolean[numChannels][dataWidth];
 //        initiating the select array with the proper size
         this.select = new boolean[3];
 //        initiating the AND Gates array with the proper size
@@ -74,7 +78,8 @@ public class DMUX_8Way_Gate {
          * */
     public int getNumChannels() {
         // returns the number of inputs of any one of the output length.
-        return output.length;
+//        return output.length;
+        return numChannels;
     }
 
     /*    *
@@ -96,7 +101,7 @@ public class DMUX_8Way_Gate {
          * Observe that it is private.
          * @param output: the output value of this gate that we just calculated.
          * */
-    private void setOutput(boolean[] output) {
+    private void setOutput(boolean[][] output) {
 //        checking to see if the size of the output array is valid
         if (output.length != this.getNumChannels()) throw new IllegalArgumentException();
         this.output = output;
@@ -106,7 +111,7 @@ public class DMUX_8Way_Gate {
          * Method that just returns the present value of the output of this gate
          * @return the value of the output of this gate
          * */
-    public boolean[] getOutput() {
+    public boolean[][] getOutput() {
         // returns the value of the output
         return this.output;
     }
@@ -126,7 +131,7 @@ public class DMUX_8Way_Gate {
         boolean and8Result;
 
 //        initiates a new output array to store momentarily the output result of this DMUX gate
-        boolean[] output = new boolean[this.getNumChannels()];
+        boolean[][] output = new boolean[this.getNumChannels()][dataWidth];
         this.selector.setComponent(this.select);
         boolean[] selections = this.selector.getOutput();
         this.and_gate_a.setInputs(new boolean[]{selections[0], this.input});
@@ -147,14 +152,14 @@ public class DMUX_8Way_Gate {
         and7Result = this.and_gate_g.getOutput();
         and8Result = this.and_gate_h.getOutput();
 //        setting the output values of the gate with the proper result of the AND gates
-        output[0] = and1Result;
-        output[1] = and2Result;
-        output[2] = and3Result;
-        output[3] = and4Result;
-        output[4] = and5Result;
-        output[5] = and6Result;
-        output[6] = and7Result;
-        output[7] = and8Result;
+        output[0][0] = and1Result;
+        output[1][0] = and2Result;
+        output[2][0] = and3Result;
+        output[3][0] = and4Result;
+        output[4][0] = and5Result;
+        output[5][0] = and6Result;
+        output[6][0] = and7Result;
+        output[7][0] = and8Result;
 //        setting the output of this MUX gate to be the result of the OR gates
         this.setOutput(output);
     }
