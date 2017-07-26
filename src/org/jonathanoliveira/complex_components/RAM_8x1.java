@@ -52,7 +52,7 @@ public class RAM_8x1 {
     }
 
     private void wire() {
-        this.dmux.setGate(this.write, this.address);
+        this.dmux.setGate(new boolean[]{this.write}, this.address);
         boolean[][] muxInput = new boolean[numRegisters][bitSize];
         for (int r = 0; r < numRegisters; r++) {
             this.registers[r].write(this.dmux.getOutput()[r][0]);

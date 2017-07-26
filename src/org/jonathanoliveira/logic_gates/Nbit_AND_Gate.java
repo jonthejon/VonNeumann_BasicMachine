@@ -31,7 +31,7 @@ public class Nbit_AND_Gate {
      * */
     public Nbit_AND_Gate(int numOfBits) {
 //        checking to see if the user is trying to construct a gate with an invalid number of relays
-        if (numOfBits <= 1) throw new IllegalArgumentException();
+        if (numOfBits <= 0) throw new IllegalArgumentException();
 //        initiating the array that will hold all the underlying AND gates of this gate
         this.and_gates = new AND_Gate[numOfBits];
 //        filling the AND gates array with new AND gates
