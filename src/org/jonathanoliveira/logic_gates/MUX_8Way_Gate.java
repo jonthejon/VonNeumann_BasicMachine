@@ -109,7 +109,7 @@ public class MUX_8Way_Gate {
     /**
      * Method responsible for wiring all the underlying gates of this MUX gate and updating the output
      * */
-    public void wire() {
+    private void wire() {
 
         this.selector.setComponent(this.select);
         boolean[] selections = this.selector.getOutput();
