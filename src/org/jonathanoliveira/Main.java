@@ -138,6 +138,7 @@ public class Main {
         System.out.println("ROM flashed.");
         instructions.forEach(booleans -> this.cpu.addInstruction_test(booleans));
         this.reset();
+        this.cpu.runClock();
     }
 
     private void addSingleDataToRAM(boolean[] address, boolean[] data) {

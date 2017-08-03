@@ -2,6 +2,8 @@ package org.jonathanoliveira.complex_components;
 
 import org.jonathanoliveira.basic_components.Inverter;
 import org.jonathanoliveira.logic_gates.MUX_Gate;
+import org.jonathanoliveira.logic_gates.Nbit_AND_Gate;
+import org.jonathanoliveira.utilities.Binary;
 import org.jonathanoliveira.utilities.Converter;
 
 /**
@@ -25,8 +27,11 @@ public class CPU_16bit {
     private Inverter inv_reg_a;
     private int bitSize;
     private int numOfInstructions;
+    private Nbit_AND_Gate controllerAND;
+    private CounterController controller;
 
-    private boolean[] dummy;
+
+    Converter converter = new Converter();
 
     public CPU_16bit() {
         this.counter = new Counter_Nbit(14);
@@ -40,10 +45,11 @@ public class CPU_16bit {
         this.register_a = new Register_Nbit(16);
         this.register_d = new Register_Nbit(16);
         this.inv_reg_a = new Inverter();
+        this.controllerAND = new Nbit_AND_Gate(3);
+        this.controller = new CounterController();
         this.ALU = new ALU_16bit();
         this.bitSize = 16;
         this.numOfInstructions = 0;
-        this.dummy = Converter.convertToBooleans(new int[]{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0});
     }
 
     public Register_Nbit getRegister_d() {
@@ -66,9 +72,12 @@ public class CPU_16bit {
         if (instruction.length != getBitSize()) throw new IllegalArgumentException();
         this.ROM.write(true);
         this.ROM.dataIn(instruction);
-        this.ROM.address(this.counter.getOutput());
-        this.ROM.write(false);
         incClock_test();
+        boolean[] clock = this.counter.getOutput();
+        this.ROM.address(clock);
+        this.ROM.write(false);
+//        System.out.println(converter.convert_unsigned(Converter.convertFromBooleans(clock)));
+//        runClock();
         numOfInstructions++;
     }
 
@@ -76,9 +85,12 @@ public class CPU_16bit {
         if (data.length != getBitSize()) throw new IllegalArgumentException();
         this.RAM.write(true);
         this.RAM.dataIn(data);
-        this.RAM.address(this.counter.getOutput());
-        this.RAM.write(false);
         incClock_test();
+        boolean[] clock = this.counter.getOutput();
+        this.RAM.address(clock);
+        this.RAM.write(false);
+//        System.out.println(converter.convert_unsigned(Converter.convertFromBooleans(clock)));
+//        counter.getOutput();
     }
 
     public void addSingleData(boolean[] address, boolean[] data) {
@@ -98,18 +110,23 @@ public class CPU_16bit {
     }
 
     public boolean[] fetchInstruction_test() {
+//        incClock_test();
         this.ROM.address(this.counter.getOutput());
-        incClock_test();
         return this.ROM.dataOut();
     }
 
     public boolean[] fetchData_test() {
+//        incClock_test();
         this.RAM.address(this.counter.getOutput());
-        incClock_test();
         return this.RAM.dataOut();
     }
 
+    public void runClock() {
+        counter.getOutput();
+    }
+
     public void run_test() {
+        incClock_test();
         int control = 0;
         while (control < numOfInstructions) {
             control++;
@@ -122,6 +139,12 @@ public class CPU_16bit {
             boolean[] ALUControl = new boolean[]{instruction[4], instruction[5], instruction[6], instruction[7], instruction[8], instruction[9]};
             boolean[] destBits = new boolean[]{instruction[10], instruction[11], instruction[12]};
             boolean[] jumpBits = new boolean[]{instruction[13], instruction[14], instruction[15]};
+
+//            System.out.print(type);
+//            if (type) {
+//                for (boolean bool : jumpBits) System.out.print("" + bool + " ");
+//                System.out.println("");
+//            }
 
 //            sending the type bit into an inverter
             inv_reg_a.setInput(type);
@@ -139,6 +162,7 @@ public class CPU_16bit {
 //            just getting the register A output so we can perform some calculations on it
             boolean[] register_a_data = register_a.Q();
 
+
 //            System.out.println("REGISTER A");
 //            for (boolean bool : register_a_data) {
 //                System.out.print("" + bool + " ");
@@ -152,6 +176,18 @@ public class CPU_16bit {
                 if (i <= 1) continue;
                 address[i - 2] = register_a_data[i];
             }
+
+
+            counter.setInput(address);
+            boolean typeCopy = type;
+            controllerAND.setInputs(jumpBits, new boolean[]{typeCopy, typeCopy, typeCopy});
+            controller.setInputs(controllerAND.getOutput(), ALU.getZr(), ALU.getNg());
+            boolean[] counterFunc = new boolean[]{controller.isOutL(), controller.isOutI(), Binary.NO_VOLTAGE.getValue()};
+//            for (boolean bool : counterFunc) System.out.print("" + bool + " ");
+//            System.out.println("");
+            counter.setFunction(counterFunc);
+
+
 //            this mux will define if we'll read or write to the RAM. If type A, RAM.write(false) and we'll just read. If type C, the destination bits will be used to define the RAM.write()
             mux_RAM.setGate(new boolean[]{type}, new boolean[]{destBits[2]}, type);
 //            setting the RAM.write() according to the output of the previous mux gate

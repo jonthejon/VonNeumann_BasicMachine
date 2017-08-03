@@ -48,8 +48,9 @@ public class Counter_Nbit {
     }
 
     public boolean[] getOutput() {
-//        wire();
-        return output;
+        boolean[] temp = this.output;
+        wire();
+        return temp;
     }
 
     public void setCounter(boolean[] input, boolean[] function) {
@@ -59,6 +60,7 @@ public class Counter_Nbit {
 //        }
 //        if (testFunc > 1 || input.length != bitSize || function.length != 3) throw new IllegalArgumentException();
         this.input = input;
+//        setInput(input);
         setFunction(function);
 //        this.L = function[0];
 //        this.I = function[1];
@@ -74,7 +76,13 @@ public class Counter_Nbit {
         this.L = function[0];
         this.I = function[1];
         this.R = function[2];
-        wire();
+//        wire();
+    }
+
+    public void setInput(boolean[] input) {
+        if (input.length != bitSize) throw new IllegalArgumentException();
+        this.input = input;
+//        wire();
     }
 
     private void wire() {

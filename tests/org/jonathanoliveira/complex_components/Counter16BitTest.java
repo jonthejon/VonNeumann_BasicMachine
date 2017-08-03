@@ -39,15 +39,25 @@ public class Counter16BitTest {
         assertArrayEquals(exp8, counter.getOutput());
         counter.setCounter(input, func);
         assertArrayEquals(exp1, counter.getOutput());
+        counter.setFunction(func);
         assertArrayEquals(exp2, counter.getOutput());
+        counter.setFunction(func);
         assertArrayEquals(exp3, counter.getOutput());
+        counter.setFunction(func);
         assertArrayEquals(exp4, counter.getOutput());
+        counter.setFunction(func);
         assertArrayEquals(exp5, counter.getOutput());
+        counter.setFunction(func);
         assertArrayEquals(exp6, counter.getOutput());
+        counter.setFunction(func);
         assertArrayEquals(exp7, counter.getOutput());
+        counter.setFunction(func);
         assertArrayEquals(exp8, counter.getOutput());
+        counter.setFunction(func);
         assertArrayEquals(exp1, counter.getOutput());
+        counter.setFunction(func);
         assertArrayEquals(exp2, counter.getOutput());
+        counter.setFunction(func);
         assertArrayEquals(exp3, counter.getOutput());
         func = Converter.convertToBooleans(new int[]{0,0,0});
         counter.setCounter(input, func);
@@ -57,10 +67,15 @@ public class Counter16BitTest {
         func = Converter.convertToBooleans(new int[]{0,1,0});
         counter.setCounter(input, func);
         assertArrayEquals(exp4, counter.getOutput());
+        counter.setFunction(func);
         assertArrayEquals(exp5, counter.getOutput());
+        counter.setFunction(func);
         assertArrayEquals(exp6, counter.getOutput());
+        counter.setFunction(func);
         assertArrayEquals(exp7, counter.getOutput());
+        counter.setFunction(func);
         assertArrayEquals(exp8, counter.getOutput());
+        counter.setFunction(func);
         assertArrayEquals(exp1, counter.getOutput());
     }
 
@@ -87,7 +102,9 @@ public class Counter16BitTest {
         func = Converter.convertToBooleans(new int[]{0,1,0});
         counter.setCounter(input, func);
         assertArrayEquals(exp7, counter.getOutput());
+        counter.setFunction(func);
         assertArrayEquals(exp8, counter.getOutput());
+        counter.setFunction(func);
         assertArrayEquals(exp1, counter.getOutput());
         func = Converter.convertToBooleans(new int[]{0,0,0});
         counter.setCounter(input, func);
@@ -101,9 +118,13 @@ public class Counter16BitTest {
         func = Converter.convertToBooleans(new int[]{0,1,0});
         counter.setCounter(input, func);
         assertArrayEquals(exp7, counter.getOutput());
+        counter.setFunction(func);
         assertArrayEquals(exp8, counter.getOutput());
+        counter.setFunction(func);
         assertArrayEquals(exp1, counter.getOutput());
+        counter.setFunction(func);
         assertArrayEquals(exp2, counter.getOutput());
+        counter.setFunction(func);
         assertArrayEquals(exp3, counter.getOutput());
     }
 
@@ -131,7 +152,9 @@ public class Counter16BitTest {
         assertArrayEquals(exp8, counter.getOutput());
         counter.setCounter(input, inc);
         assertArrayEquals(exp1, counter.getOutput());
+        counter.setFunction(inc);
         assertArrayEquals(exp2, counter.getOutput());
+        counter.setFunction(inc);
         assertArrayEquals(exp3, counter.getOutput());
         counter.setCounter(input, stall);
         assertArrayEquals(exp3, counter.getOutput());
@@ -143,6 +166,7 @@ public class Counter16BitTest {
         assertArrayEquals(exp8, counter.getOutput());
         counter.setCounter(input, inc);
         assertArrayEquals(exp1, counter.getOutput());
+        counter.setFunction(inc);
         assertArrayEquals(exp2, counter.getOutput());
         counter.setCounter(input, stall);
         assertArrayEquals(exp2, counter.getOutput());
