@@ -1,5 +1,6 @@
 package org.jonathanoliveira.complex_components;
 
+import org.jonathanoliveira.basic_components.BasicComponent;
 import org.jonathanoliveira.utilities.Converter;
 import org.junit.Test;
 
@@ -10,6 +11,7 @@ public class RAM_8x1Test {
     @Test (expected = IllegalArgumentException.class)
     public void checkInvalidAddress() throws Exception {
         RAM_8x1 ram = new RAM_8x1();
+//        System.out.println(BasicComponent.counter);
         ram.write(true);
         ram.dataIn(true);
         boolean[] address = Converter.convertToBooleans(new int[]{0,0});

@@ -1,5 +1,6 @@
 package org.jonathanoliveira.logic_gates;
 
+import org.jonathanoliveira.basic_components.BasicComponent;
 import org.jonathanoliveira.logic_gates.AND_Gate;
 import org.junit.Test;
 

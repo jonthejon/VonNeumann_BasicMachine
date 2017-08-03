@@ -54,6 +54,14 @@ public class CPU_16bit {
         return this.bitSize;
     }
 
+    public int getRamSize() {
+        return this.RAM.getStorage();
+    }
+
+    public int getRomSize() {
+        return this.ROM.getStorage();
+    }
+
     public void addInstruction_test(boolean[] instruction) {
         if (instruction.length != getBitSize()) throw new IllegalArgumentException();
         this.ROM.write(true);

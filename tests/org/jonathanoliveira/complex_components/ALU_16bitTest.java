@@ -1,5 +1,6 @@
 package org.jonathanoliveira.complex_components;
 
+import org.jonathanoliveira.basic_components.BasicComponent;
 import org.jonathanoliveira.utilities.Converter;
 import org.junit.Test;
 
@@ -10,6 +11,7 @@ public class ALU_16bitTest {
     @Test(expected = IllegalArgumentException.class)
     public void check_invalidInput() throws Exception {
         ALU_16bit alu = new ALU_16bit();
+//        System.out.println(BasicComponent.counter);
         boolean[] x = Converter.convertToBooleans(new int[]{1,0,0,0,1,0,0,0,1,1,1,0,1});
         boolean[] y = Converter.convertToBooleans(new int[]{1,0,0,0,1,0,0,0,1,1,1,0,1});
         boolean[] function = Converter.convertToBooleans(new int[]{1,0});

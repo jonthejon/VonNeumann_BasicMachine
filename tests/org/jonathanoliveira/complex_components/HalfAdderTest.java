@@ -1,5 +1,6 @@
 package org.jonathanoliveira.complex_components;
 
+import org.jonathanoliveira.basic_components.BasicComponent;
 import org.jonathanoliveira.logic_gates.XOR_gate;
 import org.junit.Test;
 

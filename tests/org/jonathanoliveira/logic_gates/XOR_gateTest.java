@@ -1,5 +1,6 @@
 package org.jonathanoliveira.logic_gates;
 
+import org.jonathanoliveira.basic_components.BasicComponent;
 import org.junit.Test;
 
 import static org.junit.Assert.*;

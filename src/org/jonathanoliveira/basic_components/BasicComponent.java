@@ -13,12 +13,8 @@ public abstract class BasicComponent implements Configurable {
 
     public static int counter;
 
-//    the default value of input is true, unless else defined by a Logic gate.
     private boolean input = Binary.VOLTAGE.getValue();
-    /*private boolean input;*/
-//    the default value of voltage is true, unless else defined by a Logic gate.
     private boolean voltage = Binary.VOLTAGE.getValue();
-//    output has no default value. It will be calculated after the wiring of the components
     private boolean output;
 
     BasicComponent() {

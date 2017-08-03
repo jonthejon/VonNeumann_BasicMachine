@@ -47,6 +47,14 @@ public class Main {
                 continue;
             }
 
+            if (userInput.toLowerCase().equals("memory")) {
+                int ram = computer.cpu.getRamSize();
+                int rom = computer.cpu.getRomSize();
+                System.out.printf("%,d bytes", (ram + rom) * 2);
+                System.out.println("");
+                continue;
+            }
+
             if (userInput.toLowerCase().contains("flash->")) {
                 int charInit = userInput.indexOf('>') + 1;
                 String filename = userInput.substring(charInit);
@@ -113,7 +121,6 @@ public class Main {
                     boolAddr = Converter.convertToBooleans(intAddr);
                     boolBin = Converter.convertToBooleans(intData);
                     System.out.println("Inserted into RAM[" + decAddress + "]: " + decValue);
-//                    System.out.println("");
                     computer.addSingleDataToRAM(boolAddr, boolBin);
                 } else {
                     throw new IllegalArgumentException();
@@ -124,6 +131,7 @@ public class Main {
         }
         System.out.printf("");
         System.out.printf("Power off.");
+        System.out.printf("");
     }
 
     private void addToROM(ArrayList<boolean[]> instructions) {

@@ -47,6 +47,10 @@ public class RAM_16Kx16 {
         this.write = write;
     }
 
+    public int getStorage() {
+        return (int) Math.pow(2, this.address.length);
+    }
+
     public void address(boolean[] address) {
         if (address.length != this.address.length) throw new IllegalArgumentException();
         this.address = address;

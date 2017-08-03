@@ -14,6 +14,7 @@ public class InverterTest {
     @Before
     public void setUp() throws Exception {
         inverter = new Inverter();
+
     }
 
     @Test
