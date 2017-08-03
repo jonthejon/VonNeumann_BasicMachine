@@ -5,6 +5,8 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -136,5 +138,43 @@ public class CPU_16bitTest {
         boolean[] regD = cpu.register_d.Q();
         boolean[] exp = Converter.convertToBooleans(new int[]{0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0});
         assertArrayEquals(exp, regD);
+    }
+
+    @Test
+    public void reader() throws Exception {
+//        Converter converter = new Converter();
+        String filename = "add_R0_R1";
+        BufferedReader reader = new BufferedReader(new FileReader("./" + filename + ".txt"), 4096);
+        ArrayList<String> raw = new ArrayList<>();
+        reader.lines().forEach(line -> raw.add(line));
+        ArrayList<Integer> bits = new ArrayList<>();
+        raw.forEach(string -> {
+            int size = string.length();
+            for (int s = 0; s < size; s++) {
+                String strBit = string.substring(s, s+1);
+                int bit = Integer.parseInt(strBit);
+                bits.add(bit);
+            }
+        });
+        boolean[][] instructions = new boolean[bits.size()/16][16];
+        int[] instr;
+        int counter = 0;
+        for (int i = 0; i < instructions.length; i++) {
+            instr = new int[16];
+            for (int j = 0; j < 16; j++) {
+                instr[j] = bits.get(counter);
+                counter++;
+            }
+            boolean[] boolInst = Converter.convertToBooleans(instr);
+            instructions[i] = boolInst;
+        }
+
+        for (boolean[] booleans : instructions) {
+            for (boolean bool : booleans) {
+                System.out.print("" + bool + " ");
+            }
+            System.out.println("");
+            System.out.println("");
+        }
     }
 }

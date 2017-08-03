@@ -5,6 +5,8 @@ import org.jonathanoliveira.basic_components.BasicComponent;
 import org.jonathanoliveira.complex_components.CPU_16bit;
 import org.jonathanoliveira.utilities.Converter;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -14,6 +16,9 @@ public class Main {
     private CPU_16bit cpu;
 
     public static void main(String[] args) {
+
+        System.out.printf("Power on.");
+        System.out.println("");
 
         Main computer = new Main();
         computer.cpu = new CPU_16bit();
@@ -31,37 +36,67 @@ public class Main {
             }
 
             if (userInput.toLowerCase().equals("run")) {
-                computer.setUp();
+                computer.run();
                 power = false;
                 continue;
             }
 
             if (userInput.toLowerCase().equals("relays")) {
-                System.out.printf("Number of relays: %,d", numOfRelays);
-                System.out.println("");
+                System.out.printf("%,d", numOfRelays);
                 System.out.println("");
                 continue;
             }
 
+            if (userInput.toLowerCase().contains("flash->")) {
+                int charInit = userInput.indexOf('>') + 1;
+                String filename = userInput.substring(charInit);
 
-            boolean[] boolBin = new boolean[16];
-            boolean[] boolAddr = new boolean[14];
+                ArrayList<boolean[]> instructions = new ArrayList<>();
+                try {
+                    BufferedReader bufferedReader = new BufferedReader(new FileReader("./" + filename + ".txt"), 4096);
+                    ArrayList<String> raw = new ArrayList<>();
+                    bufferedReader.lines().forEach(raw::add);
+                    ArrayList<Integer> bits = new ArrayList<>();
+                    raw.forEach(string -> {
+                        int size = string.length();
+                        for (int s = 0; s < size; s++) {
+                            String strBit = string.substring(s, s + 1);
+                            int bit = Integer.parseInt(strBit);
+                            bits.add(bit);
+                        }
+                    });
+                    int[] instr;
+                    int counter = 0;
+                    for (int i = 0; i < (bits.size() / 16); i++) {
+                        instr = new int[16];
+                        for (int j = 0; j < 16; j++) {
+                            instr[j] = bits.get(counter);
+                            counter++;
+                        }
+                        boolean[] boolInst = Converter.convertToBooleans(instr);
+                        instructions.add(boolInst);
+                    }
+                } catch (Exception e) {
+                    System.out.println("Looks like this file doesn't exists.");
+                }
+
+                computer.addToROM(instructions);
+                continue;
+            }
+
+            boolean[] boolBin;
+            boolean[] boolAddr;
             try {
                 String subString = userInput.substring(0, 4);
                 if (!userInput.contains("]=")) throw new IllegalArgumentException();
-//                System.out.println("step1");
-                if (subString.equals("RAM[")) {
+                if (subString.toUpperCase().equals("RAM[")) {
                     int charInit = userInput.indexOf('[');
                     int charEnd = userInput.indexOf(']');
                     if (charEnd - charInit == 1) throw new IllegalArgumentException();
-//                    System.out.println("step2");
                     String address = userInput.substring(charInit + 1, charEnd);
                     int decAddress = Integer.parseInt(address);
                     if (decAddress < 0) throw new IllegalArgumentException();
-//                    System.out.println(decAddress);
-//                    System.out.println("step3");
                     String value = userInput.substring(charEnd + 2);
-//                    System.out.println("step4");
                     if (value.length() == 0) throw new IllegalArgumentException();
                     int[] binValue = new int[value.length()];
                     for (int s = 0; s < value.length(); s++) {
@@ -69,22 +104,7 @@ public class Main {
                         int tempNum = Integer.parseInt(sub);
                         if (tempNum != 0 && tempNum != 1) throw new IllegalArgumentException();
                         binValue[s] = tempNum;
-//                        System.out.println(sub);
                     }
-
-
-//                    System.out.println("VALUE: ");
-//                    for (int bool : binValue) {
-//                        System.out.print("" + bool + " ");
-//                    }
-//                    System.out.println("");
-
-
-//                    System.out.println("step5");
-//                    int decValue = Integer.parseInt(value);
-//                    System.out.println("step6");
-//                    System.out.println(decValue);
-
 
                     Converter converter = new Converter();
                     int[] intAddr = converter.convert_unsigned(decAddress,14);
@@ -92,8 +112,8 @@ public class Main {
                     int[] intData = converter.convert_signed(decValue, 16);
                     boolAddr = Converter.convertToBooleans(intAddr);
                     boolBin = Converter.convertToBooleans(intData);
-                    System.out.println("Inserting into RAM[" + decAddress + "]: " + decValue);
-                    System.out.println("");
+                    System.out.println("Inserted into RAM[" + decAddress + "]: " + decValue);
+//                    System.out.println("");
                     computer.addSingleDataToRAM(boolAddr, boolBin);
                 } else {
                     throw new IllegalArgumentException();
@@ -101,81 +121,14 @@ public class Main {
             } catch (Exception e) {
                 System.out.println("Invalid input.");
             }
-
-
-//            System.out.println("ADDRESS: ");
-//            for (boolean bool : boolAddr) {
-//                System.out.print("" + bool + " ");
-//            }
-//            System.out.println("");
-//
-//            System.out.println("DATA: ");
-//            for (boolean bool : boolBin) {
-//                System.out.print("" + bool + " ");
-//            }
-//            System.out.println("");
-
         }
-    }
-
-    private void setUp() {
-
-//        this.cpu = new CPU_16bit();
-
-        ArrayList<boolean[]> instructions = new ArrayList<>();
-        ArrayList<boolean[]> data = new ArrayList<>();
-
-        System.out.println("Computing RAM[0] + RAM[1]");
-
-//        regM = RAM[0]
-        boolean[] instructionA_1 = Converter.convertToBooleans(new int[]{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0});
-//        regD = regM
-        boolean[] instructionC_1 = Converter.convertToBooleans(new int[]{1,1,1,0,1,1,0,0,0,0,0,1,0,0,0,0});
-//        regM = RAM[1]
-        boolean[] instructionA_2 = Converter.convertToBooleans(new int[]{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1});
-//        regD = regD + RegM
-        boolean[] instructionC_2 = Converter.convertToBooleans(new int[]{1,1,1,0,0,0,0,0,1,0,0,1,0,0,0,0});
-//        setting address RAM[2] for output
-        boolean[] instructionA_3 = Converter.convertToBooleans(new int[]{0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0});
-//        RAM[2] = regD
-        boolean[] instructionC_3 = Converter.convertToBooleans(new int[]{1,1,1,0,0,0,1,1,0,0,0,0,1,0,0,0});
-//        regM = RAM[2]
-        boolean[] instructionA_4 = Converter.convertToBooleans(new int[]{0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0});
-//        regD = regM
-        boolean[] instructionC_4 = Converter.convertToBooleans(new int[]{1,1,1,0,1,1,0,0,0,0,0,1,0,0,0,0});
-
-        instructions.add(instructionA_1);
-        instructions.add(instructionC_1);
-        instructions.add(instructionA_2);
-        instructions.add(instructionC_2);
-        instructions.add(instructionA_3);
-        instructions.add(instructionC_3);
-        instructions.add(instructionA_4);
-        instructions.add(instructionC_4);
-
-//        boolean[] data1 = Converter.convertToBooleans(new int[]{0,0,0,0,0,0,0,0,0,1,0,1,1,1,0,1});
-//        int data1Res = Converter.convert(Converter.convertFromBooleans(data1));
-//        System.out.println("Inserting into RAM[0]: " + data1Res);
-//        boolean[] data2 = Converter.convertToBooleans(new int[]{0,0,0,0,0,0,0,0,0,0,0,1,0,1,0,1});
-//        int data2Res = Converter.convert(Converter.convertFromBooleans(data2));
-//        System.out.println("Inserting into RAM[1]: " + data2Res);
-
-//        data.add(data1);
-//        data.add(data2);
-
-        this.addToROM(instructions);
-//        computer.addToRAM(data);
-
-        this.run();
+        System.out.printf("");
+        System.out.printf("Power off.");
     }
 
     private void addToROM(ArrayList<boolean[]> instructions) {
+        System.out.println("ROM flashed.");
         instructions.forEach(booleans -> this.cpu.addInstruction_test(booleans));
-        this.reset();
-    }
-
-    private void addToRAM(ArrayList<boolean[]> data) {
-        data.forEach(booleans -> this.cpu.addData_test(booleans));
         this.reset();
     }
 
@@ -192,7 +145,6 @@ public class Main {
         this.cpu.run_test();
         boolean[] regd = this.cpu.getRegister_d().Q();
         Converter converter = new Converter();
-//        int result = Converter.convert(Converter.convertFromBooleans(regd));
         int result = converter.convert_signed(Converter.convertFromBooleans(regd));
         System.out.println("Result: " + result);
     }
