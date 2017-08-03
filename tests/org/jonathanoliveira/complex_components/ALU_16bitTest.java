@@ -120,8 +120,8 @@ public class ALU_16bitTest {
         boolean[] function = Converter.convertToBooleans(new int[]{0,0,0,0,0,0});
         alu.setInputs(x,y,function);
         assertArrayEquals(res, alu.getOutput());
-        assertTrue(!alu.isZr());
-        assertTrue(alu.isNg());
+        assertTrue(!alu.getZr());
+        assertTrue(alu.getNg());
     }
 
     @Test
@@ -133,8 +133,8 @@ public class ALU_16bitTest {
         boolean[] function = Converter.convertToBooleans(new int[]{0,0,0,0,1,0});
         alu.setInputs(x,y,function);
         assertArrayEquals(res, alu.getOutput());
-        assertTrue(!alu.isZr());
-        assertTrue(!alu.isNg());
+        assertTrue(!alu.getZr());
+        assertTrue(!alu.getNg());
     }
 
     @Test
@@ -146,8 +146,8 @@ public class ALU_16bitTest {
         boolean[] function = Converter.convertToBooleans(new int[]{1,1,1,0,0,1});
         alu.setInputs(x,y,function);
         assertArrayEquals(res, alu.getOutput());
-        assertTrue(!alu.isZr());
-        assertTrue(alu.isNg());
+        assertTrue(!alu.getZr());
+        assertTrue(alu.getNg());
     }
 
     @Test
@@ -159,8 +159,8 @@ public class ALU_16bitTest {
         boolean[] function = Converter.convertToBooleans(new int[]{1,1,1,1,0,1});
         alu.setInputs(x,y,function);
         assertArrayEquals(res, alu.getOutput());
-        assertTrue(alu.isZr());
-        assertTrue(!alu.isNg());
+        assertTrue(alu.getZr());
+        assertTrue(!alu.getNg());
     }
 
     @Test
@@ -172,8 +172,8 @@ public class ALU_16bitTest {
         boolean[] function = Converter.convertToBooleans(new int[]{1,0,1,0,1,0});
         alu.setInputs(x,y,function);
         assertArrayEquals(res, alu.getOutput());
-        assertTrue(alu.isZr());
-        assertTrue(!alu.isNg());
+        assertTrue(alu.getZr());
+        assertTrue(!alu.getNg());
     }
 
     @Test
@@ -185,8 +185,8 @@ public class ALU_16bitTest {
         boolean[] function = Converter.convertToBooleans(new int[]{1,1,1,1,1,1});
         alu.setInputs(x,y,function);
         assertArrayEquals(res, alu.getOutput());
-        assertTrue(!alu.isZr());
-        assertTrue(!alu.isNg());
+        assertTrue(!alu.getZr());
+        assertTrue(!alu.getNg());
     }
 
     @Test
@@ -198,8 +198,8 @@ public class ALU_16bitTest {
         boolean[] function = Converter.convertToBooleans(new int[]{1,1,1,0,1,0});
         alu.setInputs(x,y,function);
         assertArrayEquals(res, alu.getOutput());
-        assertTrue(!alu.isZr());
-        assertTrue(alu.isNg());
+        assertTrue(!alu.getZr());
+        assertTrue(alu.getNg());
     }
 
     @Test
@@ -211,8 +211,8 @@ public class ALU_16bitTest {
         boolean[] function = Converter.convertToBooleans(new int[]{0,0,1,1,0,0});
         alu.setInputs(x,y,function);
         assertArrayEquals(res, alu.getOutput());
-        assertTrue(!alu.isZr());
-        assertTrue(!alu.isNg());
+        assertTrue(!alu.getZr());
+        assertTrue(!alu.getNg());
     }
 
     @Test
@@ -224,8 +224,8 @@ public class ALU_16bitTest {
         boolean[] function = Converter.convertToBooleans(new int[]{1,1,0,0,0,0});
         alu.setInputs(x,y,function);
         assertArrayEquals(res, alu.getOutput());
-        assertTrue(!alu.isZr());
-        assertTrue(!alu.isNg());
+        assertTrue(!alu.getZr());
+        assertTrue(!alu.getNg());
     }
 
     @Test
@@ -237,8 +237,8 @@ public class ALU_16bitTest {
         boolean[] function = Converter.convertToBooleans(new int[]{0,0,1,1,0,1});
         alu.setInputs(x,y,function);
         assertArrayEquals(res, alu.getOutput());
-        assertTrue(!alu.isZr());
-        assertTrue(alu.isNg());
+        assertTrue(!alu.getZr());
+        assertTrue(alu.getNg());
     }
 
     @Test
@@ -250,8 +250,8 @@ public class ALU_16bitTest {
         boolean[] function = Converter.convertToBooleans(new int[]{1,1,0,0,0,1});
         alu.setInputs(x,y,function);
         assertArrayEquals(res, alu.getOutput());
-        assertTrue(!alu.isZr());
-        assertTrue(alu.isNg());
+        assertTrue(!alu.getZr());
+        assertTrue(alu.getNg());
     }
 
     @Test
@@ -263,8 +263,8 @@ public class ALU_16bitTest {
         boolean[] function = Converter.convertToBooleans(new int[]{0,0,1,1,1,1});
         alu.setInputs(x,y,function);
         assertArrayEquals(res, alu.getOutput());
-        assertTrue(!alu.isZr());
-        assertTrue(alu.isNg());
+        assertTrue(!alu.getZr());
+        assertTrue(alu.getNg());
     }
 
     @Test
@@ -276,8 +276,8 @@ public class ALU_16bitTest {
         boolean[] function = Converter.convertToBooleans(new int[]{1,1,0,0,1,1});
         alu.setInputs(x,y,function);
         assertArrayEquals(res, alu.getOutput());
-        assertTrue(!alu.isZr());
-        assertTrue(alu.isNg());
+        assertTrue(!alu.getZr());
+        assertTrue(alu.getNg());
     }
 
     @Test
@@ -289,8 +289,8 @@ public class ALU_16bitTest {
         boolean[] function = Converter.convertToBooleans(new int[]{0,1,1,1,1,1});
         alu.setInputs(x,y,function);
         assertArrayEquals(res, alu.getOutput());
-        assertTrue(!alu.isZr());
-        assertTrue(!alu.isNg());
+        assertTrue(!alu.getZr());
+        assertTrue(!alu.getNg());
     }
 
     @Test
@@ -302,8 +302,8 @@ public class ALU_16bitTest {
         boolean[] function = Converter.convertToBooleans(new int[]{1,1,0,1,1,1});
         alu.setInputs(x,y,function);
         assertArrayEquals(res, alu.getOutput());
-        assertTrue(!alu.isZr());
-        assertTrue(!alu.isNg());
+        assertTrue(!alu.getZr());
+        assertTrue(!alu.getNg());
     }
 
     @Test
@@ -315,8 +315,8 @@ public class ALU_16bitTest {
         boolean[] function = Converter.convertToBooleans(new int[]{0,0,1,1,1,0});
         alu.setInputs(x,y,function);
         assertArrayEquals(res, alu.getOutput());
-        assertTrue(!alu.isZr());
-        assertTrue(!alu.isNg());
+        assertTrue(!alu.getZr());
+        assertTrue(!alu.getNg());
     }
 
     @Test
@@ -328,8 +328,8 @@ public class ALU_16bitTest {
         boolean[] function = Converter.convertToBooleans(new int[]{1,1,0,0,1,0});
         alu.setInputs(x,y,function);
         assertArrayEquals(res, alu.getOutput());
-        assertTrue(!alu.isZr());
-        assertTrue(!alu.isNg());
+        assertTrue(!alu.getZr());
+        assertTrue(!alu.getNg());
     }
 
     @Test
@@ -341,8 +341,8 @@ public class ALU_16bitTest {
         boolean[] function = Converter.convertToBooleans(new int[]{0,0,0,0,1,0});
         alu.setInputs(x,y,function);
         assertArrayEquals(res, alu.getOutput());
-        assertTrue(!alu.isZr());
-        assertTrue(!alu.isNg());
+        assertTrue(!alu.getZr());
+        assertTrue(!alu.getNg());
     }
 
     @Test
@@ -354,8 +354,8 @@ public class ALU_16bitTest {
         boolean[] function = Converter.convertToBooleans(new int[]{0,1,0,0,1,1});
         alu.setInputs(x,y,function);
         assertArrayEquals(res, alu.getOutput());
-        assertTrue(!alu.isZr());
-        assertTrue(!alu.isNg());
+        assertTrue(!alu.getZr());
+        assertTrue(!alu.getNg());
     }
 
     @Test
@@ -367,8 +367,8 @@ public class ALU_16bitTest {
         boolean[] function = Converter.convertToBooleans(new int[]{0,0,0,1,1,1});
         alu.setInputs(x,y,function);
         assertArrayEquals(res, alu.getOutput());
-        assertTrue(!alu.isZr());
-        assertTrue(alu.isNg());
+        assertTrue(!alu.getZr());
+        assertTrue(alu.getNg());
     }
 
     @Test
@@ -380,8 +380,8 @@ public class ALU_16bitTest {
         boolean[] function = Converter.convertToBooleans(new int[]{0,0,0,0,0,0});
         alu.setInputs(x,y,function);
         assertArrayEquals(res, alu.getOutput());
-        assertTrue(!alu.isZr());
-        assertTrue(!alu.isNg());
+        assertTrue(!alu.getZr());
+        assertTrue(!alu.getNg());
     }
 
     @Test
@@ -393,7 +393,7 @@ public class ALU_16bitTest {
         boolean[] function = Converter.convertToBooleans(new int[]{0,1,0,1,0,1});
         alu.setInputs(x,y,function);
         assertArrayEquals(res, alu.getOutput());
-        assertTrue(!alu.isZr());
-        assertTrue(!alu.isNg());
+        assertTrue(!alu.getZr());
+        assertTrue(!alu.getNg());
     }
 }

@@ -11,6 +11,8 @@ import org.jonathanoliveira.utilities.Binary;
 
 public abstract class BasicComponent implements Configurable {
 
+    public static int counter;
+
 //    the default value of input is true, unless else defined by a Logic gate.
     private boolean input = Binary.VOLTAGE.getValue();
     /*private boolean input;*/
@@ -20,6 +22,7 @@ public abstract class BasicComponent implements Configurable {
     private boolean output;
 
     BasicComponent() {
+        counter++;
         wire();
     }
 

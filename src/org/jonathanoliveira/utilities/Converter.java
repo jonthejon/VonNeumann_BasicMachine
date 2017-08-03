@@ -22,6 +22,12 @@ public class Converter {
         return decimal_number;
     }
 
+    static public int convert(int[] binary) {
+        Converter converter = new Converter();
+        int result = converter.convert_unsigned(binary);
+        return result;
+    }
+
     public int convert_signed(int[] binary_number) {
         // IF most significant bit is 0, call unsigned method and return the result
         if (binary_number[0] == 0) return convert_unsigned(binary_number);

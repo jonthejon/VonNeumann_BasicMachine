@@ -5,7 +5,7 @@ import org.jonathanoliveira.logic_gates.MUX_4Way_Gate;
 
 /**
  * Ram chip.
- * This chip stores 4096 different 16bit values
+ * This chip stores 16384 different 16bit values
  */
 public class RAM_16Kx16 {
 

@@ -113,11 +113,11 @@ public class ALU_16bit {
         return this.y;
     }
 
-    public boolean isZr() {
+    public boolean getZr() {
         return this.zr;
     }
 
-    public boolean isNg() {
+    public boolean getNg() {
         return this.ng;
     }
 

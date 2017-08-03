@@ -42,23 +42,39 @@ public class Counter_Nbit {
         this.incMux = new MUX_Gate(bitSize);
         this.inverter = new Nbit_NOT_Gate(bitSize);
         this.andGate = new Nbit_AND_Gate(bitSize);
+//        this.L = false;
+//        this.I = true;
+//        this.R = false;
     }
 
     public boolean[] getOutput() {
-        wire();
+//        wire();
         return output;
     }
 
     public void setCounter(boolean[] input, boolean[] function) {
+//        int testFunc = 0;
+//        for (boolean bool : function) {
+//            if (bool) testFunc++;
+//        }
+//        if (testFunc > 1 || input.length != bitSize || function.length != 3) throw new IllegalArgumentException();
+        this.input = input;
+        setFunction(function);
+//        this.L = function[0];
+//        this.I = function[1];
+//        this.R = function[2];
+    }
+
+    public void setFunction(boolean[] function) {
         int testFunc = 0;
         for (boolean bool : function) {
             if (bool) testFunc++;
         }
         if (testFunc > 1 || input.length != bitSize || function.length != 3) throw new IllegalArgumentException();
-        this.input = input;
         this.L = function[0];
         this.I = function[1];
         this.R = function[2];
+        wire();
     }
 
     private void wire() {
