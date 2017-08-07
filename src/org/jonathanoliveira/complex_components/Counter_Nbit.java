@@ -3,6 +3,7 @@ package org.jonathanoliveira.complex_components;
 import org.jonathanoliveira.logic_gates.MUX_Gate;
 import org.jonathanoliveira.logic_gates.Nbit_AND_Gate;
 import org.jonathanoliveira.logic_gates.Nbit_NOT_Gate;
+import org.jonathanoliveira.utilities.Converter;
 
 /**
  * This class will be the counter for all accessing the RAM and controlling the ALU.
@@ -48,9 +49,11 @@ public class Counter_Nbit {
     }
 
     public boolean[] getOutput() {
-        boolean[] temp = this.output;
-        wire();
-        return temp;
+//        boolean[] temp = this.output;
+//        wire();
+//        return temp;
+//        System.out.println("IN CLOCK output called.");
+        return this.output;
     }
 
     public void setCounter(boolean[] input, boolean[] function) {
@@ -82,10 +85,10 @@ public class Counter_Nbit {
     public void setInput(boolean[] input) {
         if (input.length != bitSize) throw new IllegalArgumentException();
         this.input = input;
-//        wire();
+        wire();
     }
 
-    private void wire() {
+    public void wire() {
 
         this.inverter.setInputs(this.input);
         this.andGate.setInputs(this.input, this.inverter.getOutput());

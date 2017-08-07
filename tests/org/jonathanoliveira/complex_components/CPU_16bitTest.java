@@ -122,7 +122,6 @@ public class CPU_16bitTest {
 //        regD = regM >>>>
         boolean[] instructionC_4 = Converter.convertToBooleans(new int[]{1,1,1,0,1,1,0,0,0,0,0,1,0,0,0,0});
 
-//        cpu.incClock_test();
 //        boolean[] address1 = Converter.convertToBooleans(new int[]{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0});
 //        boolean[] address2 = Converter.convertToBooleans(new int[]{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1});
 //        boolean[] address3 = Converter.convertToBooleans(new int[]{0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0});
@@ -160,67 +159,69 @@ public class CPU_16bitTest {
         assertArrayEquals(exp, regD);
     }
 
-    @Test
-    public void testMultiplication() throws Exception {
-//        CPU_16bit cpu = new CPU_16bit();
-
+//    @Test
+//    public void testMultiplication() throws Exception {
+////        @0
+//        boolean[] instruction_1 = Converter.convertToBooleans(new int[]{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0});
+////        D=M
+//        boolean[] instruction_2 = Converter.convertToBooleans(new int[]{1,1,1,0,1,1,0,0,0,0,0,1,0,0,0,0});
+////        @=??
+//        boolean[] instruction_3 = Converter.convertToBooleans(new int[]{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1});
+////        D;JEQ
+//        boolean[] instruction_4 = Converter.convertToBooleans(new int[]{1,1,1,0,0,0,1,1,0,0,0,0,0,0,1,0});
+////        @0
+//        boolean[] instruction_5 = Converter.convertToBooleans(new int[]{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0});
+////        @0
+//        boolean[] instruction_6 = Converter.convertToBooleans(new int[]{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0});
+////        @0
+//        boolean[] instruction_7 = Converter.convertToBooleans(new int[]{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0});
+////        @0
+//        boolean[] instruction_8 = Converter.convertToBooleans(new int[]{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0});
+////        @5
+//        boolean[] instruction_9 = Converter.convertToBooleans(new int[]{0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1});
+////        D=M
+//        boolean[] instruction_10 = Converter.convertToBooleans(new int[]{1,1,1,0,1,1,0,0,0,0,0,1,0,0,0,0});
+////        boolean[] instructionC_3 = Converter.convertToBooleans(new int[]{1,1,1,0,0,0,1,1,0,0,0,0,1,0,0,0});
+////        boolean[] instructionA_4 = Converter.convertToBooleans(new int[]{0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0});
+////        boolean[] instructionC_4 = Converter.convertToBooleans(new int[]{1,1,1,0,1,1,0,0,0,0,0,1,0,0,0,0});
 //
-//
-
-//        regM = RAM[0] >>>> OK!!
-        boolean[] instructionA_1 = Converter.convertToBooleans(new int[]{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0});
-//        regD = regM >>>> OK!!
-        boolean[] instructionC_1 = Converter.convertToBooleans(new int[]{1,1,1,0,1,1,0,0,0,0,0,1,0,0,0,0});
-//        regM = RAM[1] >>>> OK!!
-        boolean[] instructionA_2 = Converter.convertToBooleans(new int[]{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1});
-//        regD = regD + RegM >>>> OK!!
-        boolean[] instructionC_2 = Converter.convertToBooleans(new int[]{1,1,1,0,0,0,0,0,1,0,0,1,0,0,0,0});
-//        setting address RAM[2] for output >>>> OK!!
-        boolean[] instructionA_3 = Converter.convertToBooleans(new int[]{0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0});
-//        RAM[2] = regD >>>> ?
-        boolean[] instructionC_3 = Converter.convertToBooleans(new int[]{1,1,1,0,0,0,1,1,0,0,0,0,1,0,0,0});
-//        regM = RAM[2] >>>>
-        boolean[] instructionA_4 = Converter.convertToBooleans(new int[]{0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0});
-//        regD = regM >>>>
-        boolean[] instructionC_4 = Converter.convertToBooleans(new int[]{1,1,1,0,1,1,0,0,0,0,0,1,0,0,0,0});
-
+////        cpu.incClock_test();
+////        boolean[] address1 = Converter.convertToBooleans(new int[]{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0});
+////        boolean[] address2 = Converter.convertToBooleans(new int[]{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1});
+////        boolean[] address3 = Converter.convertToBooleans(new int[]{0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0});
+////        boolean[] address4 = Converter.convertToBooleans(new int[]{0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1});
+////        boolean[] address5 = Converter.convertToBooleans(new int[]{0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0});
+//        cpu.addInstruction_test(instructionA_1);
+//        cpu.addInstruction_test(instructionC_1);
+//        cpu.addInstruction_test(instructionA_2);
+//        cpu.addInstruction_test(instructionC_2);
+//        cpu.addInstruction_test(instructionA_3);
+//        cpu.addInstruction_test(instructionC_3);
+//        cpu.addInstruction_test(instructionA_4);
+//        cpu.addInstruction_test(instructionC_4);
+////        cpu.addInstruction_test(address3);
+////        cpu.addInstruction_test(address4);
+////        cpu.addInstruction_test(address5);
+//        cpu.resetClock_test();
+//        cpu.runClock();
+//        boolean[] data1 = Converter.convertToBooleans(new int[]{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0});
+//        boolean[] data2 = Converter.convertToBooleans(new int[]{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1});
+////        boolean[] data3 = Converter.convertToBooleans(new int[]{1,1,0,1,1,0,1,1,1,1,1,1,1,1,0,0});
+////        boolean[] data4 = Converter.convertToBooleans(new int[]{1,0,1,1,1,0,1,1,1,1,1,1,1,0,0,0});
+////        boolean[] data5 = Converter.convertToBooleans(new int[]{0,0,1,1,0,1,1,1,0,1,1,1,0,0,0,0});
 //        cpu.incClock_test();
-//        boolean[] address1 = Converter.convertToBooleans(new int[]{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0});
-//        boolean[] address2 = Converter.convertToBooleans(new int[]{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1});
-//        boolean[] address3 = Converter.convertToBooleans(new int[]{0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0});
-//        boolean[] address4 = Converter.convertToBooleans(new int[]{0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1});
-//        boolean[] address5 = Converter.convertToBooleans(new int[]{0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0});
-        cpu.addInstruction_test(instructionA_1);
-        cpu.addInstruction_test(instructionC_1);
-        cpu.addInstruction_test(instructionA_2);
-        cpu.addInstruction_test(instructionC_2);
-        cpu.addInstruction_test(instructionA_3);
-        cpu.addInstruction_test(instructionC_3);
-        cpu.addInstruction_test(instructionA_4);
-        cpu.addInstruction_test(instructionC_4);
-//        cpu.addInstruction_test(address3);
-//        cpu.addInstruction_test(address4);
-//        cpu.addInstruction_test(address5);
-        cpu.resetClock_test();
-        cpu.runClock();
-        boolean[] data1 = Converter.convertToBooleans(new int[]{0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1});
-        boolean[] data2 = Converter.convertToBooleans(new int[]{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1});
-//        boolean[] data3 = Converter.convertToBooleans(new int[]{1,1,0,1,1,0,1,1,1,1,1,1,1,1,0,0});
-//        boolean[] data4 = Converter.convertToBooleans(new int[]{1,0,1,1,1,0,1,1,1,1,1,1,1,0,0,0});
-//        boolean[] data5 = Converter.convertToBooleans(new int[]{0,0,1,1,0,1,1,1,0,1,1,1,0,0,0,0});
-        cpu.incClock_test();
-        cpu.addData_test(data1);
-        cpu.addData_test(data2);
-//        cpu.addData_test(data3);
-//        cpu.addData_test(data4);
-//        cpu.addData_test(data5);
-        cpu.resetClock_test();
-        cpu.runClock();
-        cpu.run_test();
-        boolean[] regD = cpu.register_d.Q();
-        boolean[] exp = Converter.convertToBooleans(new int[]{0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0});
-        assertArrayEquals(exp, regD);
-    }
+//        cpu.addData_test(data1);
+//        cpu.addData_test(data2);
+////        cpu.addData_test(data3);
+////        cpu.addData_test(data4);
+////        cpu.addData_test(data5);
+//        cpu.resetClock_test();
+//        cpu.runClock();
+//        cpu.run_test();
+//        boolean[] regD = cpu.register_d.Q();
+//        boolean[] exp = Converter.convertToBooleans(new int[]{0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0});
+//        assertArrayEquals(exp, regD);
+//    }
 
 //    @Test
 //    public void reader() throws Exception {

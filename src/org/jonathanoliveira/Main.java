@@ -41,7 +41,7 @@ public class Main {
                 continue;
             }
 
-            if (userInput.toLowerCase().equals("relays")) {
+            if (userInput.toLowerCase().equals("transistors")) {
                 System.out.printf("%,d", numOfRelays);
                 System.out.println("");
                 continue;
@@ -120,8 +120,8 @@ public class Main {
                     int[] intData = converter.convert_signed(decValue, 16);
                     boolAddr = Converter.convertToBooleans(intAddr);
                     boolBin = Converter.convertToBooleans(intData);
-                    System.out.println("Inserted into RAM[" + decAddress + "]: " + decValue);
                     computer.addSingleDataToRAM(boolAddr, boolBin);
+                    System.out.println("Inserted into RAM[" + decAddress + "]: " + decValue);
                 } else {
                     throw new IllegalArgumentException();
                 }
@@ -135,14 +135,15 @@ public class Main {
     }
 
     private void addToROM(ArrayList<boolean[]> instructions) {
-        System.out.println("ROM flashed.");
         instructions.forEach(booleans -> this.cpu.addInstruction_test(booleans));
+        System.out.println("ROM flashed.");
         this.reset();
         this.cpu.runClock();
     }
 
     private void addSingleDataToRAM(boolean[] address, boolean[] data) {
         this.cpu.addSingleData(address, data);
+        this.cpu.resetRamAddress();
     }
 
     private void reset() {
@@ -150,7 +151,7 @@ public class Main {
     }
 
     private void run() {
-        System.out.print("Computing... ");
+        System.out.println("Computing... ");
         this.cpu.run_test();
         boolean[] regd = this.cpu.getRegister_d().Q();
         Converter converter = new Converter();
