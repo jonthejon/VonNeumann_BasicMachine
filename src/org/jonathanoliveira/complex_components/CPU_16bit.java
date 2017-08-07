@@ -6,6 +6,7 @@ import org.jonathanoliveira.logic_gates.Nbit_AND_Gate;
 import org.jonathanoliveira.utilities.Binary;
 import org.jonathanoliveira.utilities.Converter;
 
+import java.io.IOException;
 import java.util.Scanner;
 
 /**
@@ -179,6 +180,7 @@ public class CPU_16bit {
             numInstruc = converter.convert_unsigned(Converter.convertFromBooleans(counter.getOutput()));
 //            System.out.println(numInstruc);
 
+            System.out.print("CLOCK out:      ");
             for (boolean bool : counter.getOutput()) {
                 int conv = bool ? 1 : 0;
                 System.out.print("" + conv + " ");
@@ -222,12 +224,12 @@ public class CPU_16bit {
             boolean[] register_a_data = register_a.Q();
 
 
-//            System.out.println("REGISTER A");
-//            for (boolean bool : register_a_data) {
-//                int conv = bool ? 1 : 0;
-//                System.out.print("" + conv + " ");
-//            }
-//            System.out.println("");
+            System.out.print("REGISTER A: ");
+            for (boolean bool : register_a_data) {
+                int conv = bool ? 1 : 0;
+                System.out.print("" + conv + " ");
+            }
+            System.out.println("");
 
 //            starting a new variable to store the address that will be used to access the RAM
             boolean[] address = new boolean[14];
@@ -258,12 +260,12 @@ public class CPU_16bit {
 //            RAM.write(mux_RAM.getOutput()[0]);
 
             boolean[] ramOut = RAM.dataOut();
-//            System.out.println("REGISTER M");
-//            for (boolean bool : ramOut) {
-//                int conv = bool ? 1 : 0;
-//                System.out.print("" + conv + " ");
-//            }
-//            System.out.println("");
+            System.out.print("RAM Data :  ");
+            for (boolean bool : ramOut) {
+                int conv = bool ? 1 : 0;
+                System.out.print("" + conv + " ");
+            }
+            System.out.println("");
 
 //            this mux will let us choose to send into the ALU the contents of the A register or the M register.
 //            If instruction A, register A will be sent to the ALU. If instruction C, register M will be sent
@@ -288,12 +290,6 @@ public class CPU_16bit {
             register_d.data(ALU.getOutput());
 
             boolean[] dOut = register_d.Q();
-//            System.out.println("REGISTER D");
-//            for (boolean bool : dOut) {
-//                int conv = bool ? 1 : 0;
-//                System.out.print("" + conv + " ");
-//            }
-//            System.out.println("");
 
 //            System.out.println("calculated jump bits");
 //            for (boolean bool : controllerAND.getOutput()) {
@@ -315,12 +311,19 @@ public class CPU_16bit {
 //            setting the data of the RAM (this will only be saved if the write is set to true)
             RAM.dataIn(ALU.getOutput());
 //            setting the RAM.write() according to the output of the previous mux gate
-//            System.out.println("ALU output: ");
-//            for (boolean bool : ALU.getOutput()) {
-//                int conv = bool ? 1 : 0;
-//                System.out.print("" + conv + " ");
-//            }
-//            System.out.println("");
+            System.out.print("ALU output: ");
+            for (boolean bool : ALU.getOutput()) {
+                int conv = bool ? 1 : 0;
+                System.out.print("" + conv + " ");
+            }
+            System.out.println("");
+            System.out.print("REGISTER D: ");
+            for (boolean bool : dOut) {
+                int conv = bool ? 1 : 0;
+                System.out.print("" + conv + " ");
+            }
+            System.out.println("");
+            System.out.println("---");
             RAM.write(mux_RAM.getOutput()[0]);
 //            System.out.println("RAM Write? " + mux_RAM.getOutput()[0]);
 //            setting the address of the RAM, given by the register A
@@ -330,7 +333,6 @@ public class CPU_16bit {
 //            }
 //            System.out.println("");
 
-//            System.out.println("");
 //            System.out.println("");
         }
     }
