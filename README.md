@@ -3,6 +3,7 @@
 IN THE CURRENT IMPLEMENTATION, THIS COMPUTER HAS A 65K RAM, BUILT WITH OVER 10 MILLION TRANSISTORS (INSTANCES OF THE TRANSISTOR CLASS).
 
 How does a computer really works?
+
 This project tries to answer this question that I always had since I started programming.
 
 This is a virtual computer coded in Java. The goal of this project is to mimic the hurdles of physically assembling a computer, transistor by transistor.
@@ -30,6 +31,7 @@ The underlying CPU is a 16bit processor, therefore all instructions are 16bit wi
 The CPU architecture is very similar to the CPU used in the Nand2Tetris course. This means that you can use the instructions architecture displayed on the course.
 
 [NAND2TETRIS](http://nand2tetris.org/course.php) - The Nand2Tetris course
+
 [NAND2TETRIS - Machine Language](http://nand2tetris.org/04.php) - This section of the course explains the underlying machine language used in the CPU.
 
 Here is an example of a program that adds two different numbers that are stored in RAM-0 and RAM-1, and stores the result at RAM-2:
