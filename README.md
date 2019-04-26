@@ -2,10 +2,6 @@
 
 IN THE CURRENT IMPLEMENTATION, THIS COMPUTER HAS A 65K RAM, BUILT WITH OVER 10 MILLION TRANSISTORS (INSTANCES OF THE TRANSISTOR CLASS).
 
-How does a computer really works?
-
-This project tries to answer this question that I always had since I started programming.
-
 This is a virtual computer coded in Java. The goal of this project is to mimic the hurdles of physically assembling a computer, transistor by transistor.
 In order to achieve this goal, I developed a Java class that behaves the same way as a physical transistor and to simulate the assemblage, I restricted myself to create the entire computer with only combining several of this transistors classes together. This implies that:
      1) all the components of this virtual computer are combinations of the transistor class (I'm not allowed to create any code functionalities, only combine transistors)
